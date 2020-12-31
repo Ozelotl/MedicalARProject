@@ -6,30 +6,31 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 
-public class StateManager : SingletonMonoImmortal
+/// <summary>
+/// responsible for basic game states and scene loading
+/// </summary>
+public class StateManager : SingletonMonoMortal<StateManager>
 {
     public enum ApplicationState
     { 
-        Intro, 
-        GuidePlacement, 
-        GuideVisualization
+        Intro, // = base scene and intro scene, ends after timer or on next
+        Menu, // = base scene + screw guide scene + menu scene
+        GuidePlacement, // = base scene + screw guide scene + placement scene
+        GuideVisualization // = base scene + screw guide scene + visualization scene, going next step from here loops around to menu
     }
 
     #region fields
     [Header("Scene References")]
-    public string nameBaseScene;
-    public string nameIntroScene;
+    [SerializeField]
+    private string nameIntroScene;
+    [SerializeField]
+    private string nameScrewGuidesScene;
+    [SerializeField]
+    private string nameMenuScene;
+    [SerializeField]
     public string nameGuidePlacementScene;
+    [SerializeField]
     public string nameGuideVisualizationScene;
-
-    [Header("BaseScene events on state switch")]
-    public UnityEvent OnEnterIntroScene;
-    public UnityEvent OnEnterGuidePlacementScene;
-    public UnityEvent OnEnterGuideVisualizationScenee;
-    [Space]
-    public UnityEvent OnExitIntroScene;
-    public UnityEvent OnExitGuidePlacementScene;
-    public UnityEvent OnExitGuideVisualizationScene;
 
     private ApplicationState _state;
     #endregion
@@ -46,14 +47,22 @@ public class StateManager : SingletonMonoImmortal
     {
         int curState = (int)_state;
         int statesCount = System.Enum.GetValues(typeof(ApplicationState)).Length;
-        int nextState = ++curState % statesCount;
+
+        int nextState = ++curState;
+        if (nextState == statesCount)
+            nextState = (int)ApplicationState.Menu;
+
         setState((ApplicationState)nextState);
     }
     public void enterPreviousState()
     {
         int curState = (int)_state;
         int statesCount = System.Enum.GetValues(typeof(ApplicationState)).Length;
-        int prevState = (--curState + statesCount) % statesCount;
+        int prevState = --curState;
+
+        if (prevState <= 0)
+            prevState = (int)ApplicationState.Menu;
+
         setState((ApplicationState)prevState);
     }
     public void setState(ApplicationState stateNew)
@@ -71,18 +80,16 @@ public class StateManager : SingletonMonoImmortal
         switch (oldState)
         {
             case ApplicationState.Intro:
-                if (OnExitIntroScene != null)
-                    OnExitIntroScene.Invoke();
+                SceneManager.LoadScene(nameScrewGuidesScene, LoadSceneMode.Additive);
                 SceneManager.UnloadSceneAsync(nameIntroScene);
                 break;
+            case ApplicationState.Menu:
+                SceneManager.UnloadSceneAsync(nameMenuScene);
+                break;
             case ApplicationState.GuidePlacement:
-                if (OnExitGuidePlacementScene != null)
-                    OnExitGuidePlacementScene.Invoke();
                 SceneManager.UnloadSceneAsync(nameGuidePlacementScene);
                 break;
             case ApplicationState.GuideVisualization:
-                if (OnExitGuideVisualizationScene != null)
-                    OnExitGuideVisualizationScene.Invoke();
                 SceneManager.UnloadSceneAsync(nameGuideVisualizationScene);
                 break;
             default:
@@ -95,19 +102,16 @@ public class StateManager : SingletonMonoImmortal
 
         switch (newState)
         {
-            case ApplicationState.Intro:
-                if (OnEnterIntroScene != null)
-                    OnEnterIntroScene.Invoke();
+            case ApplicationState.Intro: //only happens once at start so we don't need to unload anything
                 SceneManager.LoadScene(nameIntroScene, LoadSceneMode.Additive);
                 break;
+            case ApplicationState.Menu:
+                SceneManager.LoadScene(nameMenuScene, LoadSceneMode.Additive);
+                break;
             case ApplicationState.GuidePlacement:
-                if (OnEnterGuidePlacementScene != null)
-                    OnEnterGuidePlacementScene.Invoke();
                 SceneManager.LoadScene(nameGuidePlacementScene, LoadSceneMode.Additive);
                 break;
             case ApplicationState.GuideVisualization:
-                if (OnEnterGuideVisualizationScenee != null)
-                    OnEnterGuideVisualizationScenee.Invoke();
                 SceneManager.LoadScene(nameGuideVisualizationScene, LoadSceneMode.Additive);
                 break;
             default:

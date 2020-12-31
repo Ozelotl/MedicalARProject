@@ -17,15 +17,29 @@ MonoBehaviour:
   recognitionConfidenceLevel: 1
   speechCommands:
   - localizationKey: 
-    keyword: Next Step
-    keyCode: 110
+    keyword: Next
+    keyCode: 112
     action:
       id: 0
       description: 
       axisConstraint: 0
   - localizationKey: 
-    keyword: Previous Step
-    keyCode: 112
+    keyword: Previous
+    keyCode: 111
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: New
+    keyCode: 108
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Place
+    keyCode: 107
     action:
       id: 0
       description: 
