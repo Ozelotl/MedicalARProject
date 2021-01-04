@@ -11,17 +11,22 @@ public class ScrewGuidePlacer : MonoBehaviour
 {
     private void Start()
     {
-        ScrewGuideCollection.Instance.enterVisualizationPhase();
+        ScrewGuideCollection.Instance.enterPhase(ScrewGuideCollection.Phase.Placement);
     }
 
+    //called via global speech command on this gameObject
     public void newGuide()
     {
+        //Create only if no screw is being adjusted
+        //Currently we only have one type of screw that can be placed
         if (ScrewGuideCollection.Instance.focusedScrewGuide == null)
             ScrewGuideCollection.Instance.createScrewGuide("ScrewDummy");
     }
 
+    //called via global speech command on this gameObject
     public void placeGuide()
-    { 
-        ScrewGuideCollection.Instance.focusedScrewGuide.placement.place();
+    {
+        if (ScrewGuideCollection.Instance.focusedScrewGuide != null)
+            ScrewGuideCollection.Instance.focusedScrewGuide.placement.place();
     }
 }

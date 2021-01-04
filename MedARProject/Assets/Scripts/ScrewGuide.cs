@@ -23,16 +23,20 @@ public class ScrewGuide : MonoBehaviour
         }
     }
 
+    //Screw that is currently being adjusted by placement or viszalized by visualization
     public bool Focused { get { return ScrewGuideCollection.Instance.focusedScrewGuide == this; } }
 
-    public void enterPlacementPhase()
+    //switch between placement and visualization logic
+    public void enterPhase(ScrewGuideCollection.Phase phase)
     {
-        placement.enabled = true;
-        visualization.enabled = false;
+        placement.enabled = phase == ScrewGuideCollection.Phase.Placement;
+        visualization.enabled = phase == ScrewGuideCollection.Phase.Visualization;
     }
-    public void enterVisualizationPhase()
+
+    //each screw model can have its own collider dimensions - transfer these to colliders in placement (and later visualization)
+    public void transferCollider(BoxCollider collider)
     {
-        placement.enabled = false;
-        visualization.enabled = true;
+        placement._collider.center = collider.center;
+        placement._collider.size = collider.size;
     }
 }

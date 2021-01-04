@@ -44,3 +44,17 @@ MonoBehaviour:
       id: 0
       description: 
       axisConstraint: 0
+  - localizationKey: 
+    keyword: Delete
+    keyCode: 106
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Adjust
+    keyCode: 104
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0

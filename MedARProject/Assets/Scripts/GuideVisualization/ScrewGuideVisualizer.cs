@@ -12,7 +12,7 @@ public class ScrewGuideVisualizer : MonoBehaviour
 {
     private void Start()
     {
-        ScrewGuideCollection.Instance.enterVisualizationPhase();
+        ScrewGuideCollection.Instance.enterPhase(ScrewGuideCollection.Phase.Visualization);
     }
 
     private void Update()
@@ -42,5 +42,4 @@ public class ScrewGuideVisualizer : MonoBehaviour
 
         ScrewGuideCollection.Instance.focusedScrewGuide = guideNearest;
     }
-
 }
