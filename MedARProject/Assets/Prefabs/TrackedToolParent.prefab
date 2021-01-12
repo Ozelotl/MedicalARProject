@@ -48,14 +48,14 @@ MonoBehaviour:
   m_Script: {fileID: -1786515678, guid: 4bc5fd733b147194692297d23f623541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: --- EMPTY ---
+  mTrackableName: MEDarZylinder1
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/--- EMPTY ---.xml
-  mTopDiameterRatio: 0.5
-  mBottomDiameterRatio: 0.5
-  mSideLength: 1
-  mTopDiameter: 0.5
-  mBottomDiameter: 0.5
+  mDataSetPath: Vuforia/MED_AR.xml
+  mTopDiameterRatio: 0.5555555
+  mBottomDiameterRatio: 0.5555555
+  mSideLength: 0.045
+  mTopDiameter: 0.025
+  mBottomDiameter: 0.025
 --- !u!114 &5427463405636130432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180592826959505765}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -106,6 +106,10 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
@@ -316,7 +320,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5481736641103549157}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1416, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5136757462373634854}
