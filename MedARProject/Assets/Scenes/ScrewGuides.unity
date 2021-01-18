@@ -121,35 +121,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!21 &299052397
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'MEDarZylinder1.Body_scaledMaterial
-
-    -1384'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: bcc2a118fefa476b84eed92f49d7b514, type: 3}
-        m_Scale: {x: -1, y: -1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
---- !u!21 &913075668
+--- !u!21 &362663467
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -158,10 +130,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: 'MEDarZylinder1.Top_scaledMaterial
 
-    -1384Bright
-
-    -1384'
-  m_Shader: {fileID: 4800000, guid: 7e6d3c0df88f3ab458512f8282e449af, type: 3}
+    -6382'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
@@ -179,37 +149,7 @@ Material:
     m_Floats: []
     m_Colors:
     - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
---- !u!21 &1172058421
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'MEDarZylinder1.Body_scaledMaterial
-
-    -1384Bright
-
-    -1384'
-  m_Shader: {fileID: 4800000, guid: 7e6d3c0df88f3ab458512f8282e449af, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: bcc2a118fefa476b84eed92f49d7b514, type: 3}
-        m_Scale: {x: -1, y: -1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
---- !u!21 &1370943603
+--- !u!21 &591736533
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -218,7 +158,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: 'MEDarZylinder1.Bottom_scaledMaterial
 
-    -1384'
+    -6382'
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -237,13 +177,13 @@ Material:
     m_Floats: []
     m_Colors:
     - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
---- !u!43 &1858819940
+--- !u!43 &1344255295
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CylinderMesh-1384
+  m_Name: CylinderMesh-6382
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -450,7 +390,95 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!21 &1975288653
+--- !u!21 &1368292537
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'MEDarZylinder1.Body_scaledMaterial
+
+    -6382Bright
+
+    -6382'
+  m_Shader: {fileID: 4800000, guid: 7e6d3c0df88f3ab458512f8282e449af, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: bcc2a118fefa476b84eed92f49d7b514, type: 3}
+        m_Scale: {x: -1, y: -1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+--- !u!21 &1418920441
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'MEDarZylinder1.Top_scaledMaterial
+
+    -6382Bright
+
+    -6382'
+  m_Shader: {fileID: 4800000, guid: 7e6d3c0df88f3ab458512f8282e449af, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: cfacbb9ede4d48d083d054395b7634ec, type: 3}
+        m_Scale: {x: -1, y: -1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+--- !u!21 &1539639341
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'MEDarZylinder1.Body_scaledMaterial
+
+    -6382'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: bcc2a118fefa476b84eed92f49d7b514, type: 3}
+        m_Scale: {x: -1, y: -1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+--- !u!21 &1998925518
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -459,9 +487,9 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: 'MEDarZylinder1.Bottom_scaledMaterial
 
-    -1384Bright
+    -6382Bright
 
-    -1384'
+    -6382'
   m_Shader: {fileID: 4800000, guid: 7e6d3c0df88f3ab458512f8282e449af, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -475,34 +503,6 @@ Material:
     m_TexEnvs:
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: d08703d44f844312abcc5a39eed598b3, type: 3}
-        m_Scale: {x: -1, y: -1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
---- !u!21 &2048122925
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'MEDarZylinder1.Top_scaledMaterial
-
-    -1384'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: cfacbb9ede4d48d083d054395b7634ec, type: 3}
         m_Scale: {x: -1, y: -1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
@@ -524,37 +524,37 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1858819940}
+      objectReference: {fileID: 1344255295}
     - target: {fileID: 8159736024630445983, guid: 6c140c92fc75c3b4e8e4c0073592e323,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 299052397}
+      objectReference: {fileID: 1539639341}
     - target: {fileID: 8159736024630445983, guid: 6c140c92fc75c3b4e8e4c0073592e323,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2048122925}
+      objectReference: {fileID: 362663467}
     - target: {fileID: 8159736024630445983, guid: 6c140c92fc75c3b4e8e4c0073592e323,
         type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
-      objectReference: {fileID: 1370943603}
+      objectReference: {fileID: 591736533}
     - target: {fileID: 8159736024630445983, guid: 6c140c92fc75c3b4e8e4c0073592e323,
         type: 3}
       propertyPath: m_Materials.Array.data[3]
       value: 
-      objectReference: {fileID: 1172058421}
+      objectReference: {fileID: 1368292537}
     - target: {fileID: 8159736024630445983, guid: 6c140c92fc75c3b4e8e4c0073592e323,
         type: 3}
       propertyPath: m_Materials.Array.data[4]
       value: 
-      objectReference: {fileID: 913075668}
+      objectReference: {fileID: 1418920441}
     - target: {fileID: 8159736024630445983, guid: 6c140c92fc75c3b4e8e4c0073592e323,
         type: 3}
       propertyPath: m_Materials.Array.data[5]
       value: 
-      objectReference: {fileID: 1975288653}
+      objectReference: {fileID: 1998925518}
     - target: {fileID: 8954682157071754544, guid: 6c140c92fc75c3b4e8e4c0073592e323,
         type: 3}
       propertyPath: m_RootOrder
@@ -624,27 +624,7 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 1978242991528429639, guid: 58e2d471dd4c6fc49a86dab6a3b4136b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2063755179948143037, guid: 58e2d471dd4c6fc49a86dab6a3b4136b,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599629344504928161, guid: 58e2d471dd4c6fc49a86dab6a3b4136b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.085
-      objectReference: {fileID: 0}
     - target: {fileID: 2907883271554057769, guid: 58e2d471dd4c6fc49a86dab6a3b4136b,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3536201538361378903, guid: 58e2d471dd4c6fc49a86dab6a3b4136b,
         type: 3}
       propertyPath: m_Mesh
       value: 
@@ -653,11 +633,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4366358038814642547, guid: 58e2d471dd4c6fc49a86dab6a3b4136b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.06490001
       objectReference: {fileID: 0}
     - target: {fileID: 4585961520307829370, guid: 58e2d471dd4c6fc49a86dab6a3b4136b,
         type: 3}

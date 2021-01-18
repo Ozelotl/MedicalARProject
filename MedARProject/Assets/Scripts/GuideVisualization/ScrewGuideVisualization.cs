@@ -13,10 +13,11 @@ public class ScrewGuideVisualization : MonoBehaviour
     private ScrewGuide _guide;
     private Transform _guideTransform;
 
+    //Used so that a screw where tool is near is visualized
     [SerializeField]
-    private GameObject _showFocused;
+    private InteractableWithTool _interactable;
 
-    private bool focused;
+    //
 
     private void Awake()
     {
@@ -25,14 +26,8 @@ public class ScrewGuideVisualization : MonoBehaviour
 
     private void Update()
     {
-        if (focused != _guide.Focused)
-        {
-            focused = _guide.Focused;
-            showVisualizationFocused();
-        }
-
         //Dummy visualization: log values and show line gizmos in scene
-        if (focused)
+        if (_interactable.Interacting)
         {
             Vector3 posGuide = _guideTransform.position;
             Vector3 posTool = TrackedTool.Instance.TooltipPosition;
@@ -56,9 +51,11 @@ public class ScrewGuideVisualization : MonoBehaviour
         }
     }
 
-    private void showVisualizationFocused()
+    //
+
+    //interactable needs the correct collider size
+    public void transferCollider(BoxCollider collider)
     {
-        //enables a red ring gameObject to show which screw is being visualized at this moment
-        _showFocused.SetActive(focused);
+        _interactable.transferCollider(collider);
     }
 }

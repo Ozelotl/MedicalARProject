@@ -31,7 +31,7 @@ Transform:
   m_LocalScale: {x: 0.02, y: 0.001, z: 0.02}
   m_Children: []
   m_Father: {fileID: 7939761875817767880}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5057225800352403576
 MeshFilter:
@@ -94,69 +94,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!1 &7602765360660412893
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8579502874800210464}
-  - component: {fileID: 1813005436073796954}
-  m_Layer: 0
-  m_Name: PlacementGlobalSpeechListener
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8579502874800210464
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7602765360660412893}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7939761875817767880}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1813005436073796954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7602765360660412893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45b3eff181cc4244a8a14234096e62fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFocusRequired: 1
-  keywords:
-  - keyword: Delete
-    response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7939761875817767881}
-          m_MethodName: deleteIfFocused
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  persistentKeywords: 0
-  speechConfirmationTooltipPrefab: {fileID: 8046114618238072051, guid: 271778f6c957b524981067a81d238394,
-    type: 3}
 --- !u!1 &7939761875817767883
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +106,7 @@ GameObject:
   - component: {fileID: 7939761875817767881}
   - component: {fileID: 7814872529331432501}
   - component: {fileID: 1154495760}
+  - component: {fileID: 3525757042713328539}
   m_Layer: 0
   m_Name: Placement
   m_TagString: Untagged
@@ -187,7 +125,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8579502874800210464}
   - {fileID: 706117704537233255}
   m_Father: {fileID: 7939761876530338695}
   m_RootOrder: 1
@@ -205,8 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _guide: {fileID: 7939761876530338692}
-  _visualization: {fileID: 3750030663218079999}
-  _collider: {fileID: 1154495760}
+  _interactable: {fileID: 3525757042713328539}
 --- !u!114 &7814872529331432501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b3eff181cc4244a8a14234096e62fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFocusRequired: 1
+  isFocusRequired: 0
   keywords:
   - keyword: Delete
     response:
@@ -227,6 +163,17 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 7939761875817767881}
           m_MethodName: deleteIfInteracting
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7939761875817767881}
+          m_MethodName: deleteIfFocused
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -267,6 +214,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3525757042713328539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7939761875817767883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47243bcc222299c479671e1f6950b93d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _visualization: {fileID: 3750030663218079999}
+  colliderInteraction: {fileID: 1154495760}
+  colliderMargin: {x: 0, y: 0, z: 0}
 --- !u!1 &7939761876062905005
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelParent: {fileID: 7939761876338520767}
+  screwDepth: 0
   placement: {fileID: 7939761875817767881}
   visualization: {fileID: 7939761877067006433}
 --- !u!1 &7939761877067006432
@@ -450,6 +413,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7939761877067006438}
   - component: {fileID: 7939761877067006433}
+  - component: {fileID: 448674458990980610}
+  - component: {fileID: 4956279872992624267}
   m_Layer: 0
   m_Name: Visualization
   m_TagString: Untagged
@@ -486,3 +451,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _guide: {fileID: 7939761876530338692}
   _showFocused: {fileID: 7939761876062905005}
+  _interactable: {fileID: 4956279872992624267}
+--- !u!65 &448674458990980610
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7939761877067006432}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4956279872992624267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7939761877067006432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47243bcc222299c479671e1f6950b93d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _visualization: {fileID: 7939761876062905005}
+  colliderInteraction: {fileID: 448674458990980610}
+  colliderMargin: {x: 0.05, y: 0, z: 0.05}

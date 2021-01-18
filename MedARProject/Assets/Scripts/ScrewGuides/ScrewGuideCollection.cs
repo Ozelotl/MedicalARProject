@@ -50,10 +50,22 @@ public class ScrewGuideCollection : SingletonMonoMortal<ScrewGuideCollection>
 
         GameObject modelPrefab = Resources.Load<GameObject>(_pathToModelFolder + modelName);
         GameObject modelNew = Instantiate(modelPrefab);
+
+        //Calculate screw depth from renderer
+        //1) reset transform for calculations
+        modelNew.transform.position = Vector3.zero;
+        modelNew.transform.rotation = Quaternion.identity;
+        Renderer[] modelRenderer = modelNew.GetComponentsInChildren<Renderer>();
+        Bounds boundsScrewModel = new Bounds();
+        for (int i = 0; i < modelRenderer.Length; i++)
+            boundsScrewModel.Encapsulate(modelRenderer[i].bounds);
+        screwGuideNew.screwDepth = boundsScrewModel.min.y;
+
+        //Set model parent and reset transform 
         modelNew.transform.SetParent(screwGuideNew.modelParent);
         modelNew.transform.localPosition = Vector3.zero;
         modelNew.transform.localRotation = Quaternion.identity;
-
+        //Set screw parent and reset transform 
         screwGuideNew.transform.SetParent(transform);
         screwGuideNew.transform.localPosition = Vector3.zero;
         screwGuideNew.transform.localRotation = Quaternion.identity;
@@ -89,15 +101,17 @@ public class ScrewGuideCollection : SingletonMonoMortal<ScrewGuideCollection>
 
         for (int i = 0; i < _liGuides.Count; i++)
             _liGuides[i].enterPhase(_currentPhase);
+
+        setInteractionEnabled(_focusedScrewGuide == null);
     }
 
     //enable interaction only if no screw is being focused
+    public delegate void InteractionEnabled(bool enabled);
+    public InteractionEnabled OnInteractionEnabled;
+
     public void setInteractionEnabled(bool enabled)
     {
-        if (_currentPhase == Phase.Placement)
-        {
-            for (int i = 0; i < _liGuides.Count; i++)
-                _liGuides[i].placement.setInteractionEnabled(enabled);
-        }
+        if (OnInteractionEnabled != null)
+            OnInteractionEnabled.Invoke(enabled);
     }
 }
