@@ -28,9 +28,9 @@ public class StateManager : SingletonMonoMortal<StateManager>
     [SerializeField]
     private string nameMenuScene;
     [SerializeField]
-    public string nameGuidePlacementScene;
+    private string nameGuidePlacementScene;
     [SerializeField]
-    public string nameGuideVisualizationScene;
+    private string nameGuideVisualizationScene;
 
     private ApplicationState _state;
     #endregion
