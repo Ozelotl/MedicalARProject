@@ -47,7 +47,10 @@ public class ScrewGuidePlacement : MonoBehaviour
     {
         //stop adjusting this guide
         if (_guide.Focused)
+        {
             ScrewGuideCollection.Instance.focusedScrewGuide = null;
+            ScrewGuideCollection.Instance.setInteractionEnabled(true);
+        }
     }
 
     //called via local speech command on this gameObject
@@ -59,6 +62,7 @@ public class ScrewGuidePlacement : MonoBehaviour
     public void adjust()
     {
         ScrewGuideCollection.Instance.focusedScrewGuide = _guide;
+        ScrewGuideCollection.Instance.setInteractionEnabled(false);
     }
 
     //called via global speech command on child object (PlacementGlobalSpeechListener)

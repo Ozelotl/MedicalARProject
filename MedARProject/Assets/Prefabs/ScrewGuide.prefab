@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 706117704537233255}
   - component: {fileID: 5057225800352403576}
   - component: {fileID: 6827477595238650723}
-  - component: {fileID: 4124184576995076746}
   m_Layer: 0
   m_Name: ShowFocused
   m_TagString: Untagged
@@ -80,20 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &4124184576995076746
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3750030663218079999}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &7939761875817767883
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,7 +225,6 @@ GameObject:
   - component: {fileID: 7939761876062905010}
   - component: {fileID: 7939761876062905009}
   - component: {fileID: 7939761876062905008}
-  - component: {fileID: 7939761876062905011}
   m_Layer: 0
   m_Name: ShowFocused
   m_TagString: Untagged
@@ -309,20 +293,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &7939761876062905011
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7939761876062905005}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &7939761876338520766
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +420,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _guide: {fileID: 7939761876530338692}
-  _showFocused: {fileID: 7939761876062905005}
   _interactable: {fileID: 4956279872992624267}
 --- !u!65 &448674458990980610
 BoxCollider:
@@ -479,4 +448,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _visualization: {fileID: 7939761876062905005}
   colliderInteraction: {fileID: 448674458990980610}
-  colliderMargin: {x: 0.05, y: 0, z: 0.05}
+  colliderMargin: {x: 0.05, y: 0.03, z: 0.05}

@@ -29,6 +29,8 @@ public class ScrewGuideCollection : SingletonMonoMortal<ScrewGuideCollection>
             return _liGuides.AsReadOnly();
         }
     }
+    
+    //being adjusted or being visualized
     private ScrewGuide _focusedScrewGuide;
     public ScrewGuide focusedScrewGuide
     {
@@ -36,7 +38,6 @@ public class ScrewGuideCollection : SingletonMonoMortal<ScrewGuideCollection>
         set 
         { 
             _focusedScrewGuide = value;
-            setInteractionEnabled(_focusedScrewGuide == null);
         }
     }
 
@@ -85,6 +86,7 @@ public class ScrewGuideCollection : SingletonMonoMortal<ScrewGuideCollection>
         }
 
         screwGuideNew.enterPhase(Phase.Placement);
+        setInteractionEnabled(false);
     }
     public void deleteScrewGuide(ScrewGuide _guide)
     {
@@ -102,7 +104,7 @@ public class ScrewGuideCollection : SingletonMonoMortal<ScrewGuideCollection>
         for (int i = 0; i < _liGuides.Count; i++)
             _liGuides[i].enterPhase(_currentPhase);
 
-        setInteractionEnabled(_focusedScrewGuide == null);
+        setInteractionEnabled(true);
     }
 
     //enable interaction only if no screw is being focused

@@ -1,7 +1,14 @@
-﻿using System.Collections;
+﻿//Stella
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Collider that makes something interactable with the tracked tool
+/// ScrewGuideCollection invokes OnInteractionEn/Disabled
+/// Currently used for Screw visualization and placement
+/// </summary>
 public class InteractableWithTool : MonoBehaviour, IGazeHandler
 {
     [SerializeField]
@@ -20,7 +27,6 @@ public class InteractableWithTool : MonoBehaviour, IGazeHandler
     private void Start()
     {
         _visualizationMat = _visualization.GetComponent<Renderer>().material;
-        setInteractionEnabled(false);
     }
 
     private void OnEnable()
@@ -36,6 +42,8 @@ public class InteractableWithTool : MonoBehaviour, IGazeHandler
 
     //
 
+    //Collider is transferred from Screw model
+
     public void transferCollider(BoxCollider collider)
     {
         colliderInteraction.center = collider.center;
@@ -44,6 +52,7 @@ public class InteractableWithTool : MonoBehaviour, IGazeHandler
 
     //
 
+    //Called from ScrewGuideCollection
     public void setInteractionEnabled(bool enabled)
     {
         colliderInteraction.enabled = enabled;
@@ -57,7 +66,7 @@ public class InteractableWithTool : MonoBehaviour, IGazeHandler
         _visualization.SetActive(false);
     }
 
-    //Adjust/delete screw tool is pointing at
+    //Adjust/delete/visualize screw tool is pointing at
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Tooltip"))

@@ -16,7 +16,7 @@ using Microsoft.MixedReality.Toolkit.UI;
 /// 
 /// (Test using B key: down = marker sight, up = no marker sight)
 /// </summary>
-public class Spine : MonoBehaviour
+public class Spine : SingletonMonoMortal<Spine>
 {
     [SerializeField]
     private Transform _model;
