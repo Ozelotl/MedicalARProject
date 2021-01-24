@@ -19,13 +19,16 @@ public class TrackedTool : SingletonMonoMortal<TrackedTool>
 
     [SerializeField]
     private Transform _tooltip;
-
+    [SerializeField]
+    private Transform _tooltop;
 
     //API
 
     public Vector3 Position { get { return transform.position; } }
     public Quaternion Rotation { get { return transform.rotation; } }
     public Vector3 TooltipPosition { get { return _tooltip.position; } }
+    public Vector3 TooltopPosition { get { return _tooltop.position; } }
+
     public Vector3 Direction { get { return -transform.up; } }
 
     private RaycastHit? _hitSpine;
