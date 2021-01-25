@@ -58,3 +58,24 @@ MonoBehaviour:
       id: 0
       description: 
       axisConstraint: 0
+  - localizationKey: 
+    keyword: Position
+    keyCode: 102
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Orientation
+    keyCode: 103
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Depth
+    keyCode: 118
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0

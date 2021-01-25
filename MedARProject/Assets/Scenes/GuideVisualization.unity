@@ -288,6 +288,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: VisualizeOrientation
       objectReference: {fileID: 0}
+    - target: {fileID: 7808912473801063164, guid: fde6b683f4a211245bc8db87aa69830d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7808912473801063167, guid: fde6b683f4a211245bc8db87aa69830d,
         type: 3}
       propertyPath: m_RootOrder
@@ -345,6 +350,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fde6b683f4a211245bc8db87aa69830d, type: 3}
+--- !u!1 &425250050 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7808912473801063164, guid: fde6b683f4a211245bc8db87aa69830d,
+    type: 3}
+  m_PrefabInstance: {fileID: 425250049}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &710939472
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +418,10 @@ MonoBehaviour:
     Say "Next" to go to Menu
 
     Say "Previous"
-    to go back to Placement'
+    to go back to Placement
+
+    Say "Position" (f), "Orientation" (g) or "Depth"
+    (v) for getting more information.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a84f857bec7e7345843ae29404c57ce, type: 2}
   m_sharedMaterial: {fileID: 21202819797275496, guid: 6a84f857bec7e7345843ae29404c57ce,
@@ -526,6 +540,115 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &1690409848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1690409850}
+  - component: {fileID: 1690409849}
+  - component: {fileID: 1690409851}
+  m_Layer: 0
+  m_Name: phaseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1690409849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690409848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e684fea0eb9265248b4fd04443098f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PositionPhase: {fileID: 9015167602678274913}
+  OrientationPhase: {fileID: 425250050}
+  DepthPhase: {fileID: 260126047499524174}
+--- !u!4 &1690409850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690409848}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.258669, y: -0.05986786, z: -2.7316322}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1690409851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690409848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45b3eff181cc4244a8a14234096e62fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFocusRequired: 0
+  keywords:
+  - keyword: Position
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1690409849}
+          m_MethodName: ActivatePositionPhase
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: Orientation
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1690409849}
+          m_MethodName: ActivateOrientationPhase
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: Depth
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1690409849}
+          m_MethodName: ActivateDepthPhase
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  persistentKeywords: 0
+  speechConfirmationTooltipPrefab: {fileID: 8046114618238072051, guid: 271778f6c957b524981067a81d238394,
+    type: 3}
 --- !u!1001 &260126047499524173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -593,8 +716,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: VisualizeDepth
       objectReference: {fileID: 0}
+    - target: {fileID: 6689846285839096807, guid: 4b121018876dfba489b7d1c289036824,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b121018876dfba489b7d1c289036824, type: 3}
+--- !u!1 &260126047499524174 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6689846285839096807, guid: 4b121018876dfba489b7d1c289036824,
+    type: 3}
+  m_PrefabInstance: {fileID: 260126047499524173}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9015167602678274912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -669,3 +803,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 944f5e835baf8994fb3e5f9ad883de6f, type: 3}
+--- !u!1 &9015167602678274913 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9015167603268211146, guid: 944f5e835baf8994fb3e5f9ad883de6f,
+    type: 3}
+  m_PrefabInstance: {fileID: 9015167602678274912}
+  m_PrefabAsset: {fileID: 0}
