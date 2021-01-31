@@ -1463,6 +1463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _model: {fileID: 6200994391337328431}
+  _collider: {fileID: 5105968847157798189}
   _nonRegisteredLogicObject: {fileID: 2594997603991302459}
   _nonRegisteredLogicTarget: {fileID: 2594997603805318221}
   _loadingBarObject: {fileID: 1978242991528429639}
@@ -2453,6 +2454,11 @@ PrefabInstance:
         type: 3}
       propertyPath: displayType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114050950401502068, guid: 83c02591e2867124181bcd3bcb65e288,
+        type: 3}
+      propertyPath: hoverOffsetYScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 889928218802616676, guid: 83c02591e2867124181bcd3bcb65e288,
         type: 3}

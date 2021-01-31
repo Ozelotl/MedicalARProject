@@ -20,6 +20,8 @@ public class Spine : SingletonMonoMortal<Spine>
 {
     [SerializeField]
     private Transform _model;
+    [SerializeField]
+    private Transform _collider;
 
     [SerializeField]
     private GameObject _nonRegisteredLogicObject;
@@ -42,9 +44,7 @@ public class Spine : SingletonMonoMortal<Spine>
 
         if (!_registered)
         {
-            _model.transform.position = _nonRegisteredLogicTarget.transform.position;
-            _model.transform.rotation = _nonRegisteredLogicTarget.transform.rotation;
-            _model.transform.localScale = _nonRegisteredLogicTarget.transform.localScale;
+            setTransform(_nonRegisteredLogicTarget);
         }
         else
         { 
@@ -56,6 +56,16 @@ public class Spine : SingletonMonoMortal<Spine>
             OnMarkerSightGained();
         if (Input.GetKeyUp(KeyCode.B))
             OnMarkerSightLost();
+    }
+
+    private void setTransform(Transform t)
+    {
+        _model.transform.position = t.position;
+        _model.transform.rotation = t.rotation;
+        _model.transform.localScale = t.localScale;
+        _collider.transform.position = t.position;
+        _collider.transform.rotation = t.rotation;
+        _collider.transform.localScale = t.localScale;
     }
 
     private void OnMarkerSightGained()
