@@ -5,10 +5,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Utility for line visualization
+/// Utility
 /// </summary>
-public class LineRendererUtility
+public class MedARUtility
 {
+    public static string unitsToText(float units, float mmPerUnit)
+    {
+        float mm = units * mmPerUnit;
+        if (Mathf.Abs(mm) > 10)
+            return (mm / 10.0f).ToString("0.0") + " cm";
+        else
+            return mm.ToString("0.0") + " mm";
+    }
+
     public static void DrawLineRendererFromTo(LineRenderer lr, Vector3 from, Vector3 to, float width)
     {
         DrawLineRendererFromTo(lr, from, (to - from).normalized, Vector3.Distance(from, to), width);

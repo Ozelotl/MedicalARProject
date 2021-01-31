@@ -101,8 +101,8 @@ public class VisualizePosition : MonoBehaviour
                 );
 
                 //show distance as text
-                _indicatorTextX.text = unitsToText(dist.x);
-                _indicatorTextY.text = unitsToText(dist.y);
+                _indicatorTextX.text = MedARUtility.unitsToText(dist.x, 5);
+                _indicatorTextY.text = MedARUtility.unitsToText(dist.y, 5);
                 _indicatorTextX.transform.position.Set
                 (
                     _indicatorTextX.transform.position.x,
@@ -117,16 +117,5 @@ public class VisualizePosition : MonoBehaviour
                 );
             }
         }
-    }
-
-    private string unitsToText(float units)
-    {
-        //1 Unity unit = 5mm
-
-        float mm = units * 5;
-        if (Mathf.Abs(mm) > 10)
-            return (mm / 10.0f).ToString("0.0") + " cm";
-        else
-            return mm.ToString("0.0") + " mm";
     }
 }

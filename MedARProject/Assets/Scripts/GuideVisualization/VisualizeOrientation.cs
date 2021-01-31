@@ -103,7 +103,7 @@ public class VisualizeOrientation : MonoBehaviour
 
         RaycastHit? hit = tool.HitSpine;
         Vector3 intersection;
-        bool intersecting = LineRendererUtility.LineLineIntersection(out intersection, tool.TooltopPosition, tool.Direction, guide.EntryPosition, guide.Direction);
+        bool intersecting = MedARUtility.LineLineIntersection(out intersection, tool.TooltopPosition, tool.Direction, guide.EntryPosition, guide.Direction);
 
         Vector3 toolFrom, toolTo, guideFrom, guideTo;
         Vector3 guideMiddle = guide.EntryPosition;
@@ -123,21 +123,21 @@ public class VisualizeOrientation : MonoBehaviour
         guideTo = guideFrom - guide.Direction * (Vector3.Distance(toolFrom, toolTo));
 
         //Draw parts below spine surface semi-transparent - middle = screw position = point of entry of spine
-        LineRendererUtility.DrawLineRendererFromTo(_lineRendererGuideOutsideSpine, guideMiddle, guideTo, _lineWidth);
-        LineRendererUtility.DrawLineRendererFromTo(_lineRendererGuideInsideSpine, guideFrom, guideMiddle, _lineWidth);
+        MedARUtility.DrawLineRendererFromTo(_lineRendererGuideOutsideSpine, guideMiddle, guideTo, _lineWidth);
+        MedARUtility.DrawLineRendererFromTo(_lineRendererGuideInsideSpine, guideFrom, guideMiddle, _lineWidth);
 
         //Draw parts below spine surface semi-transparent
         //Middle = raycasthit point = point of entry tool ray
         if (hit != null)
         {
             Vector3 toolMiddle = hit.Value.point;
-            LineRendererUtility.DrawLineRendererFromTo(_lineRendererToolOutsideSpine, toolMiddle, toolTo, _lineWidth);
-            LineRendererUtility.DrawLineRendererFromTo(_lineRendererToolInsideSpine, toolFrom, toolMiddle, _lineWidth);
+            MedARUtility.DrawLineRendererFromTo(_lineRendererToolOutsideSpine, toolMiddle, toolTo, _lineWidth);
+            MedARUtility.DrawLineRendererFromTo(_lineRendererToolInsideSpine, toolFrom, toolMiddle, _lineWidth);
         }
         else
         {
             _lineRendererToolInsideSpine.positionCount = 0;
-            LineRendererUtility.DrawLineRendererFromTo(_lineRendererToolOutsideSpine, toolFrom, toolTo, _lineWidth);
+            MedARUtility.DrawLineRendererFromTo(_lineRendererToolOutsideSpine, toolFrom, toolTo, _lineWidth);
         }
 
         _matLRToolOutsideSpine.color = Color.Lerp(_colorLineToolOutsideSpineCorrect, _colorLineToolOutsideSpineIncorrect, angleDiff);
