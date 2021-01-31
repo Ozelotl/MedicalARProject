@@ -65,11 +65,6 @@ public class ScrewGuideVisualization : MonoBehaviour
         if (_interactable.Interacting)
         {
             ScrewGuideCollection.Instance.focusedScrewGuide = _guide;
-
-            bool ok = PositionDistance < 0.01f && DirectionAngleBetween < 5f;
-
-            Debug.DrawLine(_guideTransform.position, _guideTransform.position - _guide.Direction * 0.1f, Color.blue, 0, false);
-            Debug.DrawLine(TrackedTool.Instance.TooltipPosition, _guideTransform.position + TrackedTool.Instance.Direction * 0.1f, ok ? Color.green : Color.red, 0, false);
         }
         else if (ScrewGuideCollection.Instance.focusedScrewGuide == _guide)
             ScrewGuideCollection.Instance.focusedScrewGuide = null;
