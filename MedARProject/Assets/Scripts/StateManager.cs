@@ -14,7 +14,7 @@ public class StateManager : SingletonMonoMortal<StateManager>
     public enum ApplicationState
     { 
         Intro, // = base scene and intro scene, ends after timer or on next
-        Menu, // = base scene + screw guide scene + menu scene
+        //Menu, // = base scene + screw guide scene + menu scene
         GuidePlacement, // = base scene + screw guide scene + placement scene
         GuideVisualization // = base scene + screw guide scene + visualization scene, going next step from here loops around to menu
     }
@@ -50,7 +50,8 @@ public class StateManager : SingletonMonoMortal<StateManager>
 
         int nextState = ++curState;
         if (nextState == statesCount)
-            nextState = (int)ApplicationState.Menu;
+            //nextState = (int)ApplicationState.Menu;
+            nextState -= 1;
 
         setState((ApplicationState)nextState);
     }
@@ -61,7 +62,8 @@ public class StateManager : SingletonMonoMortal<StateManager>
         int prevState = --curState;
 
         if (prevState <= 0)
-            prevState = (int)ApplicationState.Menu;
+            //prevState = (int)ApplicationState.Menu;
+            prevState = (int)ApplicationState.GuidePlacement;
 
         setState((ApplicationState)prevState);
     }
@@ -83,9 +85,9 @@ public class StateManager : SingletonMonoMortal<StateManager>
                 SceneManager.LoadScene(nameScrewGuidesScene, LoadSceneMode.Additive);
                 SceneManager.UnloadSceneAsync(nameIntroScene);
                 break;
-            case ApplicationState.Menu:
-                SceneManager.UnloadSceneAsync(nameMenuScene);
-                break;
+            //case ApplicationState.Menu:
+            //    SceneManager.UnloadSceneAsync(nameMenuScene);
+            //    break;
             case ApplicationState.GuidePlacement:
                 SceneManager.UnloadSceneAsync(nameGuidePlacementScene);
                 break;
@@ -105,9 +107,9 @@ public class StateManager : SingletonMonoMortal<StateManager>
             case ApplicationState.Intro: //only happens once at start so we don't need to unload anything
                 SceneManager.LoadScene(nameIntroScene, LoadSceneMode.Additive);
                 break;
-            case ApplicationState.Menu:
-                SceneManager.LoadScene(nameMenuScene, LoadSceneMode.Additive);
-                break;
+            //case ApplicationState.Menu:
+            //    SceneManager.LoadScene(nameMenuScene, LoadSceneMode.Additive);
+            //    break;
             case ApplicationState.GuidePlacement:
                 SceneManager.LoadScene(nameGuidePlacementScene, LoadSceneMode.Additive);
                 break;
