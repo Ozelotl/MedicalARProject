@@ -9,7 +9,7 @@ using UnityEngine.Events;
 /// <summary>
 /// change phases (position, orientation, depth) for different visualization
 /// </summary>
-public class phaseManager : SingletonMonoMortal<phaseManager>
+public class PhaseManager : SingletonMonoMortal<PhaseManager>
 {
 
     public enum Phase
@@ -28,32 +28,33 @@ public class phaseManager : SingletonMonoMortal<phaseManager>
     private GameObject OrientationPhase;
     [SerializeField]
     private GameObject DepthPhase;
-    
-    private Phase _currentPhase;
+
+    //Stella: commented out bc. of never used warning
+    //private Phase _currentPhase;
     #endregion
 
 
     //private GameObject _currentPhaseObject;
-    
+
     private void Start()
-        {
-            startPhases();
-        }
+    {
+        startPhases();
+    }
 
     public void startPhases()
     {
-        _currentPhase = Phase.Position;
+        //_currentPhase = Phase.Position;
         PositionPhase.SetActive(true); // should be set active by default
     }
 
 
 
     public void ActivatePositionPhase()
-    {  
+    {
         OrientationPhase.SetActive(false);
         DepthPhase.SetActive(false);
         PositionPhase.SetActive(true);
-        _currentPhase = Phase.Position;
+        //_currentPhase = Phase.Position;
     }
 
     public void ActivateOrientationPhase()
@@ -61,7 +62,7 @@ public class phaseManager : SingletonMonoMortal<phaseManager>
         PositionPhase.SetActive(false);
         DepthPhase.SetActive(false);
         OrientationPhase.SetActive(true);
-        _currentPhase = Phase.Orientation;
+        //_currentPhase = Phase.Orientation;
     }
 
     public void ActivateDepthPhase()
@@ -69,6 +70,6 @@ public class phaseManager : SingletonMonoMortal<phaseManager>
         PositionPhase.SetActive(false);
         OrientationPhase.SetActive(false);
         DepthPhase.SetActive(true);
-        _currentPhase = Phase.Depth;
+        //_currentPhase = Phase.Depth;
     }
 }
