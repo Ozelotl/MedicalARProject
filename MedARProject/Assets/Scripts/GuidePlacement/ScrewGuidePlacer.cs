@@ -20,7 +20,7 @@ public class ScrewGuidePlacer : MonoBehaviour
         //Create only if no screw is being adjusted
         //Currently we only have one type of screw that can be placed
         if (ScrewGuideCollection.Instance.focusedScrewGuide == null)
-            ScrewGuideCollection.Instance.createScrewGuide("ScrewV1");
+            ScrewGuideCollection.Instance.createScrewGuide("Screw");
     }
 
     //called via global speech command on this gameObject
