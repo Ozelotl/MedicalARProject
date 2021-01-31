@@ -16,9 +16,9 @@ public class ScrewGuide : MonoBehaviour
     
     public ScrewGuidePlacement placement;
     public ScrewGuideVisualization visualization;
-    public Vector3 Direction { get { return -transform.up; } }
+    public Vector3 Direction { get { return -transform.up.normalized; } }
     public Vector3 EntryPosition { get { return transform.position; } }
-    public Vector3 EndPosition { get { return transform.position + Vector3.down*screwLength; } }
+    public Vector3 EndPosition { get { return transform.position + Direction*screwLength; } }
 
     //Screw that is currently being adjusted by placement
     public bool Focused { get { return ScrewGuideCollection.Instance.focusedScrewGuide == this; } }

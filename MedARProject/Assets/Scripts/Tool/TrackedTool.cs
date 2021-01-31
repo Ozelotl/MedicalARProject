@@ -29,7 +29,9 @@ public class TrackedTool : SingletonMonoMortal<TrackedTool>
     public Vector3 TooltipPosition { get { return _tooltip.position; } }
     public Vector3 TooltopPosition { get { return _tooltop.position; } }
 
-    public Vector3 Direction { get { return -transform.up; } }
+    public Vector3 Direction { get { return -transform.up.normalized; } }
+
+    public float Length { get { return Vector3.Distance(TooltipPosition, TooltopPosition); } }
 
     private RaycastHit? _hitSpine;
     public RaycastHit? HitSpine { get { return _hitSpine; } }
