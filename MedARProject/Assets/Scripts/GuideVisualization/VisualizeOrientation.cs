@@ -17,6 +17,7 @@ public class VisualizeOrientation : MonoBehaviour
 
     //Settings
 
+    [Header("Settings")]
     [SerializeField]
     private float _lineWidth;
     [SerializeField]
@@ -102,7 +103,7 @@ public class VisualizeOrientation : MonoBehaviour
 
         RaycastHit? hit = tool.HitSpine;
         Vector3 intersection;
-        bool intersecting = LineLineIntersection(out intersection, tool.TooltopPosition, tool.Direction, guide.EntryPosition, guide.Direction);
+        bool intersecting = LineRendererUtility.LineLineIntersection(out intersection, tool.TooltopPosition, tool.Direction, guide.EntryPosition, guide.Direction);
 
         Vector3 toolFrom, toolTo, guideFrom, guideTo;
         Vector3 guideMiddle = guide.EntryPosition;
@@ -122,73 +123,26 @@ public class VisualizeOrientation : MonoBehaviour
         guideTo = guideFrom - guide.Direction * (Vector3.Distance(toolFrom, toolTo));
 
         //Draw parts below spine surface semi-transparent - middle = screw position = point of entry of spine
-        drawLineRendererFromTo(_lineRendererGuideOutsideSpine, guideMiddle, guideTo);
-        drawLineRendererFromTo(_lineRendererGuideInsideSpine, guideFrom, guideMiddle);
+        LineRendererUtility.DrawLineRendererFromTo(_lineRendererGuideOutsideSpine, guideMiddle, guideTo, _lineWidth);
+        LineRendererUtility.DrawLineRendererFromTo(_lineRendererGuideInsideSpine, guideFrom, guideMiddle, _lineWidth);
 
         //Draw parts below spine surface semi-transparent
         //Middle = raycasthit point = point of entry tool ray
         if (hit != null)
         {
             Vector3 toolMiddle = hit.Value.point;
-            drawLineRendererFromTo(_lineRendererToolOutsideSpine, toolMiddle, toolTo);
-            drawLineRendererFromTo(_lineRendererToolInsideSpine, toolFrom, toolMiddle);
+            LineRendererUtility.DrawLineRendererFromTo(_lineRendererToolOutsideSpine, toolMiddle, toolTo, _lineWidth);
+            LineRendererUtility.DrawLineRendererFromTo(_lineRendererToolInsideSpine, toolFrom, toolMiddle, _lineWidth);
         }
         else
         {
             _lineRendererToolInsideSpine.positionCount = 0;
-            drawLineRendererFromTo(_lineRendererToolOutsideSpine, toolFrom, toolTo);
+            LineRendererUtility.DrawLineRendererFromTo(_lineRendererToolOutsideSpine, toolFrom, toolTo, _lineWidth);
         }
 
         _matLRToolOutsideSpine.color = Color.Lerp(_colorLineToolOutsideSpineCorrect, _colorLineToolOutsideSpineIncorrect, angleDiff);
         _matLRToolInsideSpine.color = Color.Lerp(_colorLineToolInsideSpineCorrect, _colorLineToolInsideSpineIncorrect, angleDiff);
     }
 
-    private void drawLineRendererFromTo(LineRenderer lr, Vector3 from, Vector3 to)
-    {
-        drawLineRendererFromTo(lr, from, (to - from).normalized, Vector3.Distance(from, to));
-    }
-
-    private void drawLineRendererFromTo(LineRenderer lr, Vector3 start, Vector3 dir, float dist)
-    {
-        List<Vector3> liPos = new List<Vector3>();
-
-        Vector3 dirN = dir.normalized;
-        float distCur = 0f;
-
-        //set segments with length equal to width to keep texture from being squashed
-        while (distCur < dist)
-        {
-            int count = liPos.Count;
-            liPos.Add(start + count * _lineWidth * dirN);
-            distCur += _lineWidth;
-        }
-        liPos.Add(start + liPos.Count * _lineWidth * dirN);
-
-        lr.positionCount = liPos.Count;
-        lr.SetPositions(liPos.ToArray());
-    }
-
-    //Intersection between 2 3D Line segments (From Unity Community Wiki)
-    private static bool LineLineIntersection(out Vector3 intersection, Vector3 linePoint1, Vector3 lineVec1, Vector3 linePoint2, Vector3 lineVec2)
-    {
-        Vector3 lineVec3 = linePoint2 - linePoint1;
-        Vector3 crossVec1and2 = Vector3.Cross(lineVec1, lineVec2);
-        Vector3 crossVec3and2 = Vector3.Cross(lineVec3, lineVec2);
-
-        float planarFactor = Vector3.Dot(lineVec3, crossVec1and2);
-
-        //is coplanar, and not parallel
-        if (Mathf.Approximately(planarFactor, 0f) &&
-            !Mathf.Approximately(crossVec1and2.sqrMagnitude, 0f))
-        {
-            float s = Vector3.Dot(crossVec3and2, crossVec1and2) / crossVec1and2.sqrMagnitude;
-            intersection = linePoint1 + (lineVec1 * s);
-            return true;
-        }
-        else
-        {
-            intersection = Vector3.zero;
-            return false;
-        }
-    }
+   
 }
