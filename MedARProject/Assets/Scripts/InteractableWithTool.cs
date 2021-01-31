@@ -12,6 +12,9 @@ using UnityEngine;
 public class InteractableWithTool : MonoBehaviour, IGazeHandler
 {
     [SerializeField]
+    private bool _showVisualization;
+
+    [SerializeField]
     private GameObject _visualization;
     private Material _visualizationMat;
 
@@ -102,6 +105,8 @@ public class InteractableWithTool : MonoBehaviour, IGazeHandler
         float interval = 0.1f;
         float max = 1.5f;
 
+        _visualization.SetActive(true);
+
         for (float f = 0; f < max; f += interval)
         {
             yield return new WaitForSeconds(interval);
@@ -113,7 +118,7 @@ public class InteractableWithTool : MonoBehaviour, IGazeHandler
         }
 
         _interacting = interacting;
-        _visualization.SetActive(_interacting);
+        _visualization.SetActive(_showVisualization ? _interacting : false);
 
         coroVisualizeInteractable = null;
     }
