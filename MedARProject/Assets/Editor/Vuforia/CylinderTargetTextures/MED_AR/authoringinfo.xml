@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<VuforiaUnityInfo version="7.0">
-    <TargetSet version="5.0" toolVersion="2.8.0">
-        <CylinderTarget name="MEDarZylinder1" version="3.0" targetId="8465b5c7e2cd4ceda9f8bdc43ea008ae" sideLength="0.045000" topDiameter="0.025000" bottomDiameter="0.025000" sideImage="MEDarZylinder1.Body_scaled.jpg" topImage="MEDarZylinder1.Top_scaled.jpg" bottomImage="MEDarZylinder1.Bottom_scaled.jpg"/>
-    </TargetSet>
-</VuforiaUnityInfo>

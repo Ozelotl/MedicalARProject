@@ -48,14 +48,14 @@ MonoBehaviour:
   m_Script: {fileID: -1786515678, guid: 4bc5fd733b147194692297d23f623541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: MEDarZylinder1
+  mTrackableName: CYL_TARGET
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/MED_AR.xml
-  mTopDiameterRatio: 0.5555555
-  mBottomDiameterRatio: 0.5555555
-  mSideLength: 0.045
-  mTopDiameter: 0.025
-  mBottomDiameter: 0.025
+  mDataSetPath: Vuforia/Med_AR_Cyltargets.xml
+  mTopDiameterRatio: 0.6369427
+  mBottomDiameterRatio: 0.6369427
+  mSideLength: 0.0942
+  mTopDiameter: 0.060000002
+  mBottomDiameter: 0.060000002
 --- !u!114 &5427463405636130432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,8 +106,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -327,7 +325,7 @@ Transform:
   - {fileID: 7532330370832280473}
   - {fileID: 7690277356321088016}
   m_Father: {fileID: 7258768001887542933}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6418192474081296523
 MeshFilter:
@@ -479,6 +477,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 8648237606029897330}
   - {fileID: 5136757462373634854}
   m_Father: {fileID: 8406545228672140312}
   m_RootOrder: 0
@@ -574,3 +573,82 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stateToSet: 2
+--- !u!1 &8308972970486166728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8648237606029897330}
+  - component: {fileID: 5740802946213945815}
+  - component: {fileID: 7516396267384722717}
+  m_Layer: 0
+  m_Name: Drillbit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8648237606029897330
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8308972970486166728}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.68}
+  m_Children: []
+  m_Father: {fileID: 7258768001887542933}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!33 &5740802946213945815
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8308972970486166728}
+  m_Mesh: {fileID: 5573452607268752598, guid: e262da7e4aff18942afadd64292b8480, type: 3}
+--- !u!23 &7516396267384722717
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8308972970486166728}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 8578991229988381114, guid: e262da7e4aff18942afadd64292b8480, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
