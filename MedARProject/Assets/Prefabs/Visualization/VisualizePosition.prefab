@@ -505,6 +505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f5a09d3a093b574481853c6def0bcac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _2DView: {fileID: 0}
   _colorCrosshairProjection: {r: 0, g: 0.094304115, b: 0.4811321, a: 1}
   _colorCrosshairOnSpine: {r: 0.32642996, g: 0.4260534, b: 0.83699995, a: 1}
   _colorIndicatorProjection: {r: 0, g: 0.094304115, b: 0.4811321, a: 1}
