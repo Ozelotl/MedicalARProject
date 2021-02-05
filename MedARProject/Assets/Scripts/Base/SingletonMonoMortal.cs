@@ -8,6 +8,7 @@ using UnityEngine;
 /// Singleton for a Component that is NOT set to DontDestroyOnLoad
 /// use for Manager classes whose lifetime is managed by scenes
 /// </summary>
+[DefaultExecutionOrder (-100)]
 public class SingletonMonoMortal<T> : MonoBehaviour where T : Component
 {
     private static T _Instance;
