@@ -93,3 +93,24 @@ MonoBehaviour:
       id: 0
       description: 
       axisConstraint: 0
+  - localizationKey: 
+    keyword: Show Overlay
+    keyCode: 110
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Hide Overlay
+    keyCode: 109
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Automatic
+    keyCode: 98
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0

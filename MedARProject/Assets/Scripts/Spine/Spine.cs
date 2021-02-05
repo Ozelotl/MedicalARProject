@@ -21,6 +21,8 @@ public class Spine : SingletonMonoMortal<Spine>
     [SerializeField]
     private Transform _model;
     [SerializeField]
+    private Transform _modelRendererParent;
+    [SerializeField]
     private Transform _collider;
 
     [SerializeField]
@@ -47,35 +49,35 @@ public class Spine : SingletonMonoMortal<Spine>
             setTransform(_nonRegisteredLogicTarget);
         }
         else
-        { 
-            //TODO: set transform to registered values
+        {
+            RegisterSpine reg = RegisterSpine.Instance;
+            setTransform(reg.posRegistered, reg.rotRegistered);
         }
-
-        //DUMMY for testing
-        if (Input.GetKeyDown(KeyCode.B))
-            OnMarkerSightGained();
-        if (Input.GetKeyUp(KeyCode.B))
-            OnMarkerSightLost();
     }
 
     private void setTransform(Transform t)
     {
-        _model.transform.position = t.position;
-        _model.transform.rotation = t.rotation;
-        _model.transform.localScale = t.localScale;
-        _collider.transform.position = t.position;
-        _collider.transform.rotation = t.rotation;
-        _collider.transform.localScale = t.localScale;
+        setTransform(t.position, t.rotation);
     }
 
-    private void OnMarkerSightGained()
+    private void setTransform(Vector3 pos, Quaternion rot)
+    {
+        //Scale should not be changed
+
+        _model.transform.position = pos;
+        _model.transform.rotation = rot;
+        _collider.transform.position = pos;
+        _collider.transform.rotation = rot;
+    }
+
+    public void OnMarkerSightGained()
     {
         Debug.Log("Gained sight of Spine markers!");
         stopSwitchPhase();
         if (!_registered)
             _coroSwitchPhase = StartCoroutine(switchPhase(true));
     }
-    private void OnMarkerSightLost()
+    public void OnMarkerSightLost()
     {
         Debug.Log("Lost sight of Spine markers!");
         stopSwitchPhase();
@@ -121,13 +123,15 @@ public class Spine : SingletonMonoMortal<Spine>
         if (!_registered)
         {
             //switching to manual positioning - update bounding box to be at last transform values
+            //Scale should not be changed
             _nonRegisteredLogicTarget.transform.position = _model.transform.position;
             _nonRegisteredLogicTarget.transform.rotation = _model.transform.rotation;
-            _nonRegisteredLogicTarget.transform.localScale = _model.transform.localScale;
         }
 
         //Set respective logic objects active/inactive
         _nonRegisteredLogicObject.SetActive(!_registered);
+        //Set model active/inactive
+        _modelRendererParent.gameObject.SetActive(!registered);
     }
 
     private void stopSwitchPhase()
