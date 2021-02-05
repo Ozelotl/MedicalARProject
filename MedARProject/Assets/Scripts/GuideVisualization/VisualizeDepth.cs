@@ -74,8 +74,8 @@ public class VisualizeDepth : MonoBehaviour
         else
         {
             _visObjectsParent.SetActive(true);
-         
-            TrackedTool tool = TrackedTool.Instance;
+
+            ToolManager tool = ToolManager.Instance;
 
             //Get position on tool that would be just visible if tool was fully inside spine for the whole screwLength
             Vector3 toolFullyInsidePos = tool.TooltipPosition - tool.Direction * guide.screwLength;

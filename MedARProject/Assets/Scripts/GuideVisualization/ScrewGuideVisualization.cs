@@ -33,7 +33,7 @@ public class ScrewGuideVisualization : MonoBehaviour
     {
         get
         {
-            return Vector3.Distance(PosGuide, TrackedTool.Instance.TooltipPosition);
+            return Vector3.Distance(PosGuide, ToolManager.Instance.TooltipPosition);
         }
     }
 
@@ -49,7 +49,7 @@ public class ScrewGuideVisualization : MonoBehaviour
     {
         get
         { 
-            return Mathf.Abs(Vector3.Angle(DirGuide, TrackedTool.Instance.Direction));
+            return Mathf.Abs(Vector3.Angle(DirGuide, ToolManager.Instance.Direction));
         }
     }
 

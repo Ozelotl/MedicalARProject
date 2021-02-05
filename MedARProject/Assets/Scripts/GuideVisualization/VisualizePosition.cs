@@ -44,9 +44,9 @@ public class VisualizePosition : MonoBehaviour
     {
         _position_sonification = false;
 
-        if (TrackedTool.Instance.CurrentState == TrackedTool.ToolState.InSpine)
-            _crosshair.gameObject.SetActive(false);
-        else
+        //if (ToolManager.Instance.CurrentState == TrackedTool.ToolState.InSpine)
+        //    _crosshair.gameObject.SetActive(false);
+        //else
             visualizeCrosshair();
         
         SonfificationManager.GetComponent<SonificationManager>().setSonifyPosition(_position_sonification);
@@ -54,17 +54,17 @@ public class VisualizePosition : MonoBehaviour
 
     private void visualizeCrosshair()
     {
-        if (TrackedTool.Instance.HitSpine == null)
+        if (ToolManager.Instance.HitSpine == null)
             _crosshair.gameObject.SetActive(false);
         else
         {
             _crosshair.gameObject.SetActive(true);
 
             //Change color when touching spine as feedback for virtual model
-            _crosshair.color = TrackedTool.Instance.CurrentState == TrackedTool.ToolState.OnSpine ? _colorCrosshairOnSpine : _colorCrosshairProjection;
-            _indicator.color = TrackedTool.Instance.CurrentState == TrackedTool.ToolState.OnSpine ? _colorIndicatorOnSpine : _colorIndicatorProjection; ;
+            _crosshair.color = ToolManager.Instance.CurrentState == TrackedTool.ToolState.OnSpine ? _colorCrosshairOnSpine : _colorCrosshairProjection;
+            _indicator.color = ToolManager.Instance.CurrentState == TrackedTool.ToolState.OnSpine ? _colorIndicatorOnSpine : _colorIndicatorProjection; ;
 
-            RaycastHit hit = TrackedTool.Instance.HitSpine.Value;
+            RaycastHit hit = ToolManager.Instance.HitSpine.Value;
             ScrewGuide guideFocused = ScrewGuideCollection.Instance.focusedScrewGuide;
 
             //It's better to lock rotation to screw guide rotation when near

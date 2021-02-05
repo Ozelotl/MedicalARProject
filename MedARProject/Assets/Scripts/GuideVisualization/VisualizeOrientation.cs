@@ -99,7 +99,7 @@ public class VisualizeOrientation : MonoBehaviour
         }
         else
         {
-            TrackedTool tool = TrackedTool.Instance;
+            ToolManager tool = ToolManager.Instance;
             float angle = Vector3.Angle(tool.Direction, guide.Direction);
             float angleDiff = Mathf.Clamp01(angle / _angleMax); 
             
@@ -115,7 +115,7 @@ public class VisualizeOrientation : MonoBehaviour
         SonfificationManager.GetComponent<SonificationManager>().setSonifyOrientation(_orientation_sonification);
     }
 
-    private void drawLines(ScrewGuide guide, TrackedTool tool, float angleDiff)
+    private void drawLines(ScrewGuide guide, ToolManager tool, float angleDiff)
     {
         _linrendererParent.SetActive(true);
 

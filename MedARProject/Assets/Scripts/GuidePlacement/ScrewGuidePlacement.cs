@@ -28,8 +28,8 @@ public class ScrewGuidePlacement : MonoBehaviour
         //set screw guide to be attached to tooltip if it is the one being adjusted
         if (_guide.Focused)
         {
-            _guide.transform.position = TrackedTool.Instance.TooltipPosition;
-            _guide.transform.rotation = TrackedTool.Instance.Rotation;
+            _guide.transform.position = ToolManager.Instance.TooltipPosition;
+            _guide.transform.rotation = ToolManager.Instance.Rotation;
         }
     }
 
