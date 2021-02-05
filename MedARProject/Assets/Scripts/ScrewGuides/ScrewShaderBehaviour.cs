@@ -11,24 +11,29 @@ using UnityEngine;
 public class ScrewShaderBehaviour : MonoBehaviour
 {
     private Material[] mats;
+    private ScrewGuide guide;
 
     void Start()
     {
         mats = GetComponent<Renderer>().materials;
+        guide = GetComponentInParent<ScrewGuide>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        RaycastHit? hit = TrackedTool.Instance.HitSpine;
-        if (hit == null)
+        RaycastHit hitResult;
+        bool hit = false;
+        hit = Physics.Raycast(guide.EntryPosition - guide.Direction * 0.1f, guide.Direction, out hitResult, 1f, LayerMask.GetMask("Spine"));
+
+        if (hit == false)
         {
             for (int i = 0; i < mats.Length; i++)
                 mats[i].SetFloat("_UseEntryPoint", 0);
         }
         else
         {
-            float localPosY = transform.InverseTransformPoint(TrackedTool.Instance.HitSpine.Value.point).y;
+            float localPosY = transform.InverseTransformPoint(hitResult.point).y;
             
             for (int i = 0; i < mats.Length; i++)
             {
