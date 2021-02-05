@@ -7,7 +7,7 @@ using UnityEngine;
 /// <summary>
 /// API for the tracked tool
 /// </summary>
-public class TrackedTool : SingletonMonoMortal<TrackedTool>
+public class TrackedTool: MonoBehaviour
 {
     public enum ToolState
     { 
@@ -21,6 +21,13 @@ public class TrackedTool : SingletonMonoMortal<TrackedTool>
     private Transform _tooltip;
     [SerializeField]
     private Transform _tooltop;
+
+    public struct ToolModel
+    {
+        public Transform trans;
+        public Material[] mats;
+    }
+    private List<ToolModel> _liToolModels;
 
     //API
 
@@ -44,6 +51,19 @@ public class TrackedTool : SingletonMonoMortal<TrackedTool>
 
     //
 
+    private void Start()
+    {
+        Renderer[] ren = GetComponentsInChildren<Renderer>();
+        _liToolModels = new List<ToolModel>();
+        for (int i = 0; i < ren.Length; i++)
+        {
+            ToolModel t = new ToolModel();
+            t.trans = ren[i].transform;
+            t.mats = ren[i].materials;
+            _liToolModels.Add(t);
+        }
+    }
+
     //Project unto spine model
     private void Update()
     {
@@ -55,11 +75,20 @@ public class TrackedTool : SingletonMonoMortal<TrackedTool>
     {
         _hitSpine = null;
 
-        if (!toolInsideSpine)
+        RaycastHit hit;
+        if (Physics.Raycast(Position, Direction, out hit, 1f, LayerMask.GetMask("Spine")))
+            _hitSpine = hit;
+
+        for (int i = 0; i < _liToolModels.Count; i++)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(Position, Direction, out hit, 1f, LayerMask.GetMask("Spine")))
-                _hitSpine = hit;
+            ToolModel t = _liToolModels[i];
+
+            float yEntryPoint = float.MinValue;
+            if (_hitSpine != null)
+                yEntryPoint = t.trans.InverseTransformPoint(_hitSpine.Value.point).z;
+
+            for (int k = 0; k < t.mats.Length; k++)
+                t.mats[k].SetFloat("_ZEntryPoint", yEntryPoint);
         }
     }
 

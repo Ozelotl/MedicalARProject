@@ -13,6 +13,8 @@ public class ColliderToolState : MonoBehaviour
 {
     [SerializeField]
     private TrackedTool.ToolState _stateToSet;
+    [SerializeField]
+    private TrackedTool _tool;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,11 +23,11 @@ public class ColliderToolState : MonoBehaviour
             switch (_stateToSet)
             {
                 case TrackedTool.ToolState.OnSpine:
-                    TrackedTool.Instance.tooltipTouchingSpine = true;
+                    _tool.tooltipTouchingSpine = true;
                     Debug.LogWarning("Touching");
                     break;
                 case TrackedTool.ToolState.InSpine:
-                    TrackedTool.Instance.toolInsideSpine = true;
+                    _tool.toolInsideSpine = true;
                     Debug.LogWarning("Inside");
                     break;
             }
@@ -38,11 +40,11 @@ public class ColliderToolState : MonoBehaviour
             switch (_stateToSet)
             {
                 case TrackedTool.ToolState.OnSpine:
-                    TrackedTool.Instance.tooltipTouchingSpine = false;
+                    _tool.tooltipTouchingSpine = false;
                     Debug.LogWarning("NOT Touching");
                     break;
                 case TrackedTool.ToolState.InSpine:
-                    TrackedTool.Instance.toolInsideSpine = false;
+                    _tool.toolInsideSpine = false;
                     Debug.LogWarning("NOT Inside");
                     break;
             }
