@@ -60,7 +60,7 @@ public class ScrewGuideCollection : SingletonMonoMortal<ScrewGuideCollection>
         Bounds boundsScrewModel = new Bounds();
         for (int i = 0; i < modelRenderer.Length; i++)
             boundsScrewModel.Encapsulate(modelRenderer[i].bounds);
-        screwGuideNew.screwLength = Mathf.Abs(boundsScrewModel.min.y);
+        screwGuideNew.screwLength = boundsScrewModel.size.y;
 
         //Set model parent and reset transform 
         modelNew.transform.SetParent(screwGuideNew.modelParent);
