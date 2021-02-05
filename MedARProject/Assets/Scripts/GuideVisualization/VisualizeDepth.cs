@@ -45,6 +45,9 @@ public class VisualizeDepth : MonoBehaviour
     [SerializeField]
     private Color _colTextWarning;
 
+    [SerializeField]
+    private GameObject SonfificationManager;
+
     private Camera cam;
 
     private void Start()
@@ -66,6 +69,7 @@ public class VisualizeDepth : MonoBehaviour
         if (guide == null)
         {
             _visObjectsParent.SetActive(false);
+            SonfificationManager.GetComponent<SonificationManager>().setDrillingInformation(-1, -1); //negative distance values indicate that no screw is in focus --> no sonification
         }
         else
         {
@@ -98,6 +102,7 @@ public class VisualizeDepth : MonoBehaviour
                 depthTool = tool.Length - Vector3.Distance(hit.Value.point, tool.TooltopPosition);
                 if (depthTool < 0)
                     depthTool = 0f;
+
                 //From that calculate how far the tool still needs to go inside the spine
                 remainingDepth = guide.screwLength - depthTool;
 
@@ -120,6 +125,11 @@ public class VisualizeDepth : MonoBehaviour
             _transTextRemDepth.LookAt(_textRemainingDepth.transform.position + cam.transform.forward.normalized, Vector3.up);
             _textRemainingDepth.text = MedARUtility.unitsToText(remainingDepth, 1000);
             _textRemainingDepth.color = ok ? _colTextOK : _colTextWarning;
+
+            SonfificationManager.GetComponent<SonificationManager>().setDrillingInformation(guide.screwLength, depthTool); // send information regarding the drilling to sonification manager
         }
+
+        
     }
+
 }

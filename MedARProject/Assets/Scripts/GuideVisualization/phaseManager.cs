@@ -28,22 +28,32 @@ public class PhaseManager : SingletonMonoMortal<PhaseManager>
     private GameObject OrientationPhase;
     [SerializeField]
     private GameObject DepthPhase;
+    [SerializeField]
+    private GameObject SonfificationManager;
 
-    //Stella: commented out bc. of never used warning
-    //private Phase _currentPhase;
     #endregion
 
+    private Phase _currentPhase;
 
-    //private GameObject _currentPhaseObject;
+
 
     private void Start()
     {
         startPhases();
     }
 
+
+
+    void Update()
+    {
+        // send current_phase to sonification manager
+        SonfificationManager.GetComponent<SonificationManager>().setPhase(_currentPhase);
+    }
+
+
     public void startPhases()
     {
-        //_currentPhase = Phase.Position;
+        _currentPhase = Phase.Position;
         PositionPhase.SetActive(true); // should be set active by default
     }
 
@@ -54,7 +64,7 @@ public class PhaseManager : SingletonMonoMortal<PhaseManager>
         OrientationPhase.SetActive(false);
         DepthPhase.SetActive(false);
         PositionPhase.SetActive(true);
-        //_currentPhase = Phase.Position;
+        _currentPhase = Phase.Position;
     }
 
     public void ActivateOrientationPhase()
@@ -62,7 +72,7 @@ public class PhaseManager : SingletonMonoMortal<PhaseManager>
         PositionPhase.SetActive(false);
         DepthPhase.SetActive(false);
         OrientationPhase.SetActive(true);
-        //_currentPhase = Phase.Orientation;
+        _currentPhase = Phase.Orientation;
     }
 
     public void ActivateDepthPhase()
@@ -70,6 +80,6 @@ public class PhaseManager : SingletonMonoMortal<PhaseManager>
         PositionPhase.SetActive(false);
         OrientationPhase.SetActive(false);
         DepthPhase.SetActive(true);
-        //_currentPhase = Phase.Depth;
+        _currentPhase = Phase.Depth;
     }
 }

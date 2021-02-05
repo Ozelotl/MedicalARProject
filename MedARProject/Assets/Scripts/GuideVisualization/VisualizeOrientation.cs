@@ -58,6 +58,15 @@ public class VisualizeOrientation : MonoBehaviour
 
     private Material _matLRToolOutsideSpine;
     private Material _matLRToolInsideSpine;
+
+    [SerializeField]
+    private GameObject SonfificationManager;
+    [SerializeField]
+    private float _maxAngleForSonification;
+
+
+    private bool _orientation_sonification;
+
     #endregion
 
     //
@@ -86,6 +95,7 @@ public class VisualizeOrientation : MonoBehaviour
         if (guide == null)
         {
             _linrendererParent.SetActive(false);
+            _orientation_sonification = false;
         }
         else
         {
@@ -94,7 +104,15 @@ public class VisualizeOrientation : MonoBehaviour
             float angleDiff = Mathf.Clamp01(angle / _angleMax); 
             
             drawLines(guide, tool, angleDiff);
+
+            if(angle<_maxAngleForSonification)
+            {
+                _orientation_sonification = true;
+            }
+
         }
+
+        SonfificationManager.GetComponent<SonificationManager>().setSonifyOrientation(_orientation_sonification);
     }
 
     private void drawLines(ScrewGuide guide, TrackedTool tool, float angleDiff)

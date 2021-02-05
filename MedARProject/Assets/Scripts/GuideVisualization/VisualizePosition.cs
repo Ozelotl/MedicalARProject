@@ -33,13 +33,23 @@ public class VisualizePosition : MonoBehaviour
     [SerializeField]
     private TMPro.TMP_Text _indicatorTextY;
 
+    [SerializeField]
+    private GameObject SonfificationManager;
+
+
+    private bool _position_sonification = false;
+
 
     private void Update()
     {
+        _position_sonification = false;
+
         if (TrackedTool.Instance.CurrentState == TrackedTool.ToolState.InSpine)
             _crosshair.gameObject.SetActive(false);
         else
             visualizeCrosshair();
+        
+        SonfificationManager.GetComponent<SonificationManager>().setSonifyPosition(_position_sonification);
     }
 
     private void visualizeCrosshair()
@@ -74,8 +84,11 @@ public class VisualizePosition : MonoBehaviour
                 _indicatorTextX.gameObject.SetActive(false);
                 _indicatorTextY.gameObject.SetActive(false);
             }
-            else
+            else 
             {
+                // Lars: guide in focus --> start sonification, if this status is kept for at least 2 sec (handled in sonification manager)
+                _position_sonification = true;
+
                 //Show ruler
                 _indicator.gameObject.SetActive(true);
                 _indicator.transform.position = guideFocused.visualization.PosGuide;
