@@ -47,7 +47,7 @@ public class InformationManager : SingletonMonoMortal<InformationManager>
 
     void Start()
     {
-        showInfo();
+        hideInfo();
     }
 
     public void showInfo()

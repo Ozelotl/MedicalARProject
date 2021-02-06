@@ -2960,8 +2960,8 @@ MonoBehaviour:
   CloseButton: {fileID: 1589145338}
   Content: {fileID: 149511506}
   gazeDistance: 2.5
-  distanceUp: 0
-  distanceRight: 0
+  distanceUp: 0.4
+  distanceRight: 1
 --- !u!114 &2100817613
 MonoBehaviour:
   m_ObjectHideFlags: 0
