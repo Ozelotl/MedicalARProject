@@ -267,7 +267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &110031114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1110,14 +1110,14 @@ MonoBehaviour:
   _relaxingSound: {fileID: 1300809475}
   _alertSound: {fileID: 51859019}
   _ConfirmOrientationSound: {fileID: 806477519}
-  _relax_volume_general: 1
+  _relax_volume_general: 0.5
   _fadingIn_time: 3
   _fadingOut_time: 2
   _occlusion_distance_factor: 0.3
-  _relax_volume_occluded: 0.5
+  _relax_volume_occluded: 0.4
   _occlusion_cut_off_frequency: 1000
-  _alertAudio_min: 0.3
-  _ratio_begin_of_critical_region: 0.5
+  _alertAudio_min: 0.1
+  _ratio_begin_of_critical_region: 0.8
   _manual_screw_focus: 0
   _manual_correct_orientation: 0
   _manual_Depth_manipulation: 0

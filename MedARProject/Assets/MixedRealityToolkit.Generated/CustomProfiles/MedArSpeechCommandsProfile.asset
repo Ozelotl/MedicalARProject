@@ -94,14 +94,14 @@ MonoBehaviour:
       description: 
       axisConstraint: 0
   - localizationKey: 
-    keyword: Show Overlay
+    keyword: Register
     keyCode: 110
     action:
       id: 0
       description: 
       axisConstraint: 0
   - localizationKey: 
-    keyword: Hide Overlay
+    keyword: Stop
     keyCode: 109
     action:
       id: 0
@@ -110,6 +110,83 @@ MonoBehaviour:
   - localizationKey: 
     keyword: Automatic
     keyCode: 98
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Red
+    keyCode: 114
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Blue
+    keyCode: 98
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Yellow
+    keyCode: 121
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Pink
+    keyCode: 112
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Box
+    keyCode: 105
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Spine
+    keyCode: 117
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Show
+    keyCode: 46
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Hide
+    keyCode: 44
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Virtual
+    keyCode: 43
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Overlay
+    keyCode: 105
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: None
+    keyCode: 117
     action:
       id: 0
       description: 

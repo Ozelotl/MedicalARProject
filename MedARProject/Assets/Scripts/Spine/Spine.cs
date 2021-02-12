@@ -38,6 +38,17 @@ public class Spine : SingletonMonoMortal<Spine>
 
     private bool _registered;
 
+    private void Start()
+    {
+        Camera cam = Camera.main;
+        float offset = transform.position.z;
+        transform.position = cam.transform.position + cam.transform.forward * offset;
+        transform.LookAt(transform.position + cam.transform.forward.normalized);
+
+        _registered = RegisterSpine.Instance.Registered;
+        setRegisterObjectsActive();
+    }
+
     private void Update()
     {
         //Since there are two ways to position the spine, we move logic objects
@@ -128,10 +139,15 @@ public class Spine : SingletonMonoMortal<Spine>
             _nonRegisteredLogicTarget.transform.rotation = _model.transform.rotation;
         }
 
+        setRegisterObjectsActive();
+    }
+
+    private void setRegisterObjectsActive()
+    {
         //Set respective logic objects active/inactive
         _nonRegisteredLogicObject.SetActive(!_registered);
         //Set model active/inactive
-        _modelRendererParent.gameObject.SetActive(!registered);
+        _modelRendererParent.gameObject.SetActive(_overlay || !_registered);
     }
 
     private void stopSwitchPhase()
@@ -142,6 +158,23 @@ public class Spine : SingletonMonoMortal<Spine>
 
         _taskCloseLoadingBar = _loadingBar.CloseAsync();
         _loadingBarObject.SetActive(false);
+    }
+
+    private bool _overlay = true;
+
+    private void setOverlay(bool active)
+    {
+        _overlay = active;
+        setRegisterObjectsActive();
+    }
+
+    public void setOverlayActive()
+    {
+        setOverlay(true);
+    }
+    public void setOverlayInactive()
+    {
+        setOverlay(false);
     }
 }
 

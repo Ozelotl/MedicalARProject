@@ -474,6 +474,8 @@ MonoBehaviour:
     a: 0.39215687}
   _colorLineGuideOutsideSpine: {r: 0, g: 0.094304115, b: 0.4811321, a: 1}
   _colorLineGuideInsideSpine: {r: 0, g: 0.094304115, b: 0.4811321, a: 0.39215687}
+  SonfificationManager: {fileID: 0}
+  _maxAngleForSonification: 10
 --- !u!1 &9033510649068836491
 GameObject:
   m_ObjectHideFlags: 0

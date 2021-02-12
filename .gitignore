@@ -58,3 +58,7 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+MedARProject/Assets/StellaTest/
+MedARProject/Assets/StellaTest.meta
+MedARProject/Assets/MRTK/Providers/WindowsMixedReality/Shared/DotNetAdapter.meta
+MedARProject/Assets/MRTK/Providers/WindowsMixedReality/Shared/DotNetAdapter/DotNetAdapter.csproj.meta

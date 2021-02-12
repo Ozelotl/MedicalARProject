@@ -6,17 +6,22 @@ using Vuforia;
 public class RegisterSpine : SingletonMonoMortal<RegisterSpine>
 {
     [System.Serializable]
-    public struct SpineMarker
+    public class SpineMarker
     {
         public ImageTargetBehaviour imgTarget;
+        public GameObject goOverlay;
         public Transform transSpine;
-        public GameObject overlay;
+        public Transform transStyrofoam;
     }
 
-    [SerializeField]
-    private List<SpineMarker> _liMarker;
+    public List<SpineMarker> liMarker;
 
-    private List<Transform> _liTransformsToUse = new List<Transform>();
+    private Transform _lastTracked;
+    private Transform[] _arTransToUse;
+    private int _iTransToUse;
+
+    [SerializeField]
+    private AdjustSpinePos _adjust;
 
     [HideInInspector]
     public Vector3 posRegistered;
@@ -24,7 +29,7 @@ public class RegisterSpine : SingletonMonoMortal<RegisterSpine>
     public Quaternion rotRegistered;
 
     private bool registered;
-    private bool Registered
+    public bool Registered
     {
         get { return registered; }
         set
@@ -32,7 +37,7 @@ public class RegisterSpine : SingletonMonoMortal<RegisterSpine>
             bool old = registered;
             registered = value;
 
-            if (registered != old)
+            if (registered != old && Spine.Instance != null)
             {
                 if (registered)
                     Spine.Instance.OnMarkerSightGained();
@@ -44,68 +49,120 @@ public class RegisterSpine : SingletonMonoMortal<RegisterSpine>
 
     private void OnEnable()
     {
-        for (int i = 0; i < _liMarker.Count; i++)
-            _liMarker[i].imgTarget.RegisterOnTrackableStatusChanged(onMarkerStatusChanged);
+        for (int i = 0; i < liMarker.Count; i++)
+            liMarker[i].imgTarget.RegisterOnTrackableStatusChanged(onMarkerStatusChanged);
     }
 
     private void OnDisable()
     {
-        for (int i = 0; i < _liMarker.Count; i++)
-            _liMarker[i].imgTarget.UnregisterOnTrackableStatusChanged(onMarkerStatusChanged);
+        for (int i = 0; i < liMarker.Count; i++)
+            liMarker[i].imgTarget.UnregisterOnTrackableStatusChanged(onMarkerStatusChanged);
+    }
+
+    private void Start()
+    {
+        _arTransToUse = new Transform[liMarker.Count];
     }
 
     private void Update()
     {
         if (registered)
         {
-            posRegistered = _liTransformsToUse[0].position;
-            rotRegistered = _liTransformsToUse[0].rotation;
+            Vector3 posRegisteredNew = _arTransToUse[0].position;
+            Quaternion rotRegisteredNew = _arTransToUse[0].rotation;
 
-            for (int i = 1; i < _liTransformsToUse.Count; i++)
+            for (int i = 1; i < _iTransToUse; i++)
             {
                 float lerpVal = 1 - (i / ((float)(i + 1)));
 
-                posRegistered = Vector3.Lerp(posRegistered, _liTransformsToUse[i].position, lerpVal);
-                rotRegistered = Quaternion.Lerp(rotRegistered, _liTransformsToUse[i].rotation, lerpVal);
+                posRegisteredNew = Vector3.Lerp(posRegisteredNew, _arTransToUse[i].position, lerpVal);
+                rotRegisteredNew = Quaternion.Lerp(rotRegisteredNew, _arTransToUse[i].rotation, lerpVal);
+            }
+
+            if (transEqualLossy(posRegistered, rotRegistered.eulerAngles, posRegisteredNew, rotRegisteredNew.eulerAngles, 0.05f, 0.005f))
+            {
+                posRegistered = Vector3.Lerp(posRegistered, posRegisteredNew, 0.7f);
+                rotRegistered = Quaternion.Lerp(rotRegistered, rotRegisteredNew, 0.7f);
+            }
+            else
+            {
+                posRegistered = posRegisteredNew;
+                rotRegistered = rotRegisteredNew;
             }
         }
     }
 
     private void onMarkerStatusChanged(TrackableBehaviour.StatusChangeResult res)
     {
-        _liTransformsToUse.Clear();
-        collectTransforms(TrackableBehaviour.Status.TRACKED, TrackableBehaviour.Status.EXTENDED_TRACKED);
-        if (_liTransformsToUse.Count == 0)
-            collectTransforms(TrackableBehaviour.Status.DETECTED);
-        if (_liTransformsToUse.Count == 0)
-            collectTransforms(TrackableBehaviour.Status.LIMITED);
+        _iTransToUse = 0;
+        bool registerNew = false;
 
-        Registered = _liTransformsToUse.Count != 0;
+        collectTransforms(TrackableBehaviour.Status.TRACKED);
+
+        if (_iTransToUse > 0)
+        {
+            _lastTracked = _arTransToUse[0];
+            registerNew = true;
+        }
+
+        collectTransforms(TrackableBehaviour.Status.EXTENDED_TRACKED, _lastTracked);
+
+
+        if (!Registered && registerNew)
+            Registered = true;
+        else if (Registered && _iTransToUse == 0)
+            Registered = false;
     }
 
-    private void collectTransforms(TrackableBehaviour.Status status, DataSetTrackableBehaviour.Status? additionalStatus = null)
+    private void collectTransforms(TrackableBehaviour.Status status, Transform lastTracked = null)
     {
-        for (int i = 0; i < _liMarker.Count; i++)
+        for (int i = 0; i < liMarker.Count; i++)
         {
-            SpineMarker m = _liMarker[i];
-            if (m.imgTarget.CurrentStatus == status || (additionalStatus != null && m.imgTarget.CurrentStatus == additionalStatus.Value))
-                _liTransformsToUse.Add(m.transSpine);
+            SpineMarker m = liMarker[i];
+            if (m.imgTarget.CurrentStatus == status && (lastTracked == null || transEqualLossy(m.transSpine, lastTracked, 0.02f)))
+                _arTransToUse[_iTransToUse++] = (m.transSpine);
         }
+    }
+
+    private static bool transEqualLossy(Transform t1, Transform t2, float lossy, float lossyMin = -1)
+    {
+        return transEqualLossy(t1.position, t1.eulerAngles, t2.position, t2.eulerAngles, lossy, lossyMin);
+    }
+
+    private static bool transEqualLossy(Vector3 pos1, Vector3 eAng1, Vector3 pos2, Vector3 eAng2, float lossy, float lossyMin = -1)
+    {
+        float distPos = Vector3.Distance(pos1, pos2);
+        float distRot = Vector3.Distance(eAng1, eAng2);
+
+        bool eq = distPos < lossy && distRot < lossy;
+        if (lossyMin >= 0 && (distPos < lossyMin || distRot < lossyMin))
+            eq = false;
+        return eq;
     }
 
     //
 
+    //Called via voice command
+    public void startAdjust()
+    {
+        if (StateManager.Instance.CurrentState == StateManager.ApplicationState.Adjust)
+            _adjust.startAdjust();
+    }
+
     public void showOverlay()
     {
-        setOverlayActive(true);
+        for (int i = 0; i < liMarker.Count; i++)
+            liMarker[i].goOverlay.SetActive(true);
     }
+
     public void hideOverlay()
     {
-        setOverlayActive(false);
+        for (int i = 0; i < liMarker.Count; i++)
+            liMarker[i].goOverlay.SetActive(false);
     }
-    private void setOverlayActive(bool active)
+
+    public void setVirtual()
     {
-        for (int i = 0; i < _liMarker.Count; i++)
-            _liMarker[i].overlay.SetActive(active);
+        Registered = false;
     }
 }

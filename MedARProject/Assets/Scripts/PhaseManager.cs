@@ -69,18 +69,21 @@ public class PhaseManager : SingletonMonoMortal<PhaseManager>
     }
     public void ActivatePositionPhase()
     {
+        _automatic = false;
         changePhase(Phase.Position);
     }
     public void ActivateOrientationPhase()
     {
+        _automatic = false;
         changePhase(Phase.Orientation);
     }
     public void ActivateDepthPhase()
     {
+        _automatic = false;
         changePhase(Phase.Depth);
     }
 
-    private void changePhase(Phase phase, bool force = false)
+    public void changePhase(Phase phase, bool force = false)
     {
         if (!force && phase == _currentPhase)
             return;

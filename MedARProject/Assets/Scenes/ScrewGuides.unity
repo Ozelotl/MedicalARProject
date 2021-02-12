@@ -192,12 +192,12 @@ PrefabInstance:
     - target: {fileID: 4585961520307829370, guid: 58e2d471dd4c6fc49a86dab6a3b4136b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.04
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4585961520307829370, guid: 58e2d471dd4c6fc49a86dab6a3b4136b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4585961520307829370, guid: 58e2d471dd4c6fc49a86dab6a3b4136b,
         type: 3}
@@ -281,3 +281,68 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58e2d471dd4c6fc49a86dab6a3b4136b, type: 3}
+--- !u!1 &2250079462967044596 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3814349976146714816, guid: 58e2d471dd4c6fc49a86dab6a3b4136b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2250079462967044595}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2250079462967044597 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7472047804502279729, guid: 58e2d471dd4c6fc49a86dab6a3b4136b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2250079462967044595}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2250079462967044596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f98f3a7e35f86f42a25b04f14895ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2250079462967044598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2250079462967044596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45b3eff181cc4244a8a14234096e62fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFocusRequired: 0
+  keywords:
+  - keyword: Overlay
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2250079462967044597}
+          m_MethodName: setOverlayActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: None
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2250079462967044597}
+          m_MethodName: setOverlayInactive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  persistentKeywords: 0
+  speechConfirmationTooltipPrefab: {fileID: 8046114618238072051, guid: 271778f6c957b524981067a81d238394,
+    type: 3}

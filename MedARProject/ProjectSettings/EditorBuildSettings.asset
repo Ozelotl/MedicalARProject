@@ -5,16 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/StellaTest/Test.unity
+    guid: d80578b84096f674ea2c008ca523b0d1
   - enabled: 1
     path: Assets/Scenes/Base.unity
     guid: 6bebd6806b96cf24cae83fade56cad2d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Intro.unity
     guid: 5c6b1cea2a11f224f9c3ca4420a7530a
   - enabled: 1
     path: Assets/Scenes/ScrewGuides.unity
     guid: 01fc26f3c9f250e47b710587bd284cdf
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Menu.unity
     guid: 52c0fb421a8111f45b1de742bf4fb6d2
   - enabled: 1

@@ -6,6 +6,8 @@
         _MainTex("Albedo (RGB)", 2D) = "white" {}
         _Glossiness("Smoothness", Range(0,1)) = 0.5
         _Metallic("Metallic", Range(0,1)) = 0.0
+        _AlphaOutside("_AlphaOutside", Range(0,1)) = 0.3
+        _AlphaInside("_AlphaInside", Range(0,1)) = 0.5
     }
         SubShader
         {
@@ -32,6 +34,9 @@
             half _Metallic;
             fixed4 _Color;
 
+            half _AlphaOutside;
+            half _AlphaInside;
+
             float _ZEntryPoint;
 
             // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
@@ -56,9 +61,10 @@
                 // Metallic and smoothness come from slider variables
                 o.Metallic = _Metallic;
                 o.Smoothness = _Glossiness;
-                o.Alpha = c.a;
 
-                clip(IN.localPos.z - _ZEntryPoint);
+                o.Alpha = _AlphaOutside;
+                if (IN.localPos.z > _ZEntryPoint)
+                    o.Alpha = _AlphaInside;
             }
             ENDCG
         }

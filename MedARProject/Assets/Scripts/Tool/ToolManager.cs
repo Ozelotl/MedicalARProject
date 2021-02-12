@@ -65,13 +65,13 @@ public class ToolManager : SingletonMonoMortal<ToolManager>
     private void Update()
     {
         if (_toolDrill._tool != null &&
-            (_toolDrill._target.CurrentStatus == Vuforia.TrackableBehaviour.Status.TRACKED || _toolDrill._target.CurrentStatus == Vuforia.TrackableBehaviour.Status.DETECTED))
+            (_toolDrill._target.CurrentStatus == Vuforia.TrackableBehaviour.Status.TRACKED))
             _activeTool = _toolDrill._tool;
         else
             _activeTool = _toolOne._tool;
 
         PhaseManager p = PhaseManager.Instance;
         if (p != null && p.AutomaticPhase)
-            p.CurrentPhase = AutomaticPhase;
+            p.changePhase(AutomaticPhase);
     }
 }

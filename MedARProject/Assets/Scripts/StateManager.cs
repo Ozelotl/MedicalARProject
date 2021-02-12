@@ -13,7 +13,8 @@ public class StateManager : SingletonMonoMortal<StateManager>
 {
     public enum ApplicationState
     { 
-        Intro, // = base scene and intro scene, ends after timer or on next
+        Adjust,
+        //Intro, // = base scene and intro scene, ends after timer or on next
         //Menu, // = base scene + screw guide scene + menu scene
         GuidePlacement, // = base scene + screw guide scene + placement scene
         GuideVisualization // = base scene + screw guide scene + visualization scene, going next step from here loops around to menu
@@ -32,14 +33,18 @@ public class StateManager : SingletonMonoMortal<StateManager>
     [SerializeField]
     private string nameGuideVisualizationScene;
 
+    [SerializeField]
+    private AdjustSpinePos _adjustSpineObj;
+
     private ApplicationState _state;
+    public ApplicationState CurrentState { get { return _state; } }
     #endregion
 
     protected override void Awake()
     {
         base.Awake();
 
-        enterState(ApplicationState.Intro);
+        enterState(ApplicationState.Adjust, true);
     }
 
     #region API
@@ -63,12 +68,15 @@ public class StateManager : SingletonMonoMortal<StateManager>
 
         if (prevState <= 0)
             //prevState = (int)ApplicationState.Menu;
-            prevState = (int)ApplicationState.GuidePlacement;
+            prevState = 0;
 
         setState((ApplicationState)prevState);
     }
     public void setState(ApplicationState stateNew)
     {
+        if (_state == stateNew)
+            return;
+
         exitState(_state);
         enterState(stateNew);
     }
@@ -81,10 +89,15 @@ public class StateManager : SingletonMonoMortal<StateManager>
 
         switch (oldState)
         {
-            case ApplicationState.Intro:
-                SceneManager.LoadScene(nameScrewGuidesScene, LoadSceneMode.Additive);
-                SceneManager.UnloadSceneAsync(nameIntroScene);
+            case ApplicationState.Adjust:
+                //base scene only
+                _adjustSpineObj.endAdjust();
+                SceneManager.LoadSceneAsync(nameScrewGuidesScene, LoadSceneMode.Additive);
                 break;
+            //case ApplicationState.Intro:
+            //    SceneManager.LoadScene(nameScrewGuidesScene, LoadSceneMode.Additive);
+            //    SceneManager.UnloadSceneAsync(nameIntroScene);
+            //    break;
             //case ApplicationState.Menu:
             //    SceneManager.UnloadSceneAsync(nameMenuScene);
             //    break;
@@ -98,15 +111,20 @@ public class StateManager : SingletonMonoMortal<StateManager>
                 break;
         }
     }
-    private void enterState(ApplicationState newState)
+    private void enterState(ApplicationState newState, bool init = false)
     {
         Debug.Log("Enter State " + newState);
 
         switch (newState)
         {
-            case ApplicationState.Intro: //only happens once at start so we don't need to unload anything
-                SceneManager.LoadScene(nameIntroScene, LoadSceneMode.Additive);
+            case ApplicationState.Adjust:
+                //base scene only
+                if (!init)
+                    SceneManager.UnloadSceneAsync(nameScrewGuidesScene);
                 break;
+            //case ApplicationState.Intro: //only happens once at start so we don't need to unload anything
+            //    SceneManager.LoadScene(nameIntroScene, LoadSceneMode.Additive);
+            //    break;
             //case ApplicationState.Menu:
             //    SceneManager.LoadScene(nameMenuScene, LoadSceneMode.Additive);
             //    break;
