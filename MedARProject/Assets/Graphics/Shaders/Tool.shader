@@ -1,4 +1,7 @@
-﻿Shader "Custom/Tool"
+﻿//Stella
+
+//Renders tool on top of spine and adjusts alpha according to depth
+Shader "Custom/Tool"
 {
     Properties
     {
@@ -62,6 +65,8 @@
                 o.Metallic = _Metallic;
                 o.Smoothness = _Glossiness;
 
+                //Tool is rendered less transparent inside the spine, 
+                //as in this case the physical tool is no longer visible
                 o.Alpha = _AlphaOutside;
                 if (IN.localPos.z > _ZEntryPoint)
                     o.Alpha = _AlphaInside;

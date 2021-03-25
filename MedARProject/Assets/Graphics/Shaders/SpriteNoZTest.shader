@@ -1,4 +1,7 @@
-﻿Shader "Sprites/SpriteNoZTest"
+﻿//Stella
+
+//Renders Sprites on top of geometry
+Shader "Sprites/SpriteNoZTest"
 {
     Properties
     {

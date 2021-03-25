@@ -1,4 +1,7 @@
-﻿Shader "Custom/Screw"
+﻿//Stella
+
+//Renders screws on top of spine and adjusts alpha according to depth
+Shader "Custom/Screw"
 {
     Properties
     {
@@ -67,6 +70,7 @@
             o.Smoothness = _Glossiness;
             o.Alpha = c.a;
 
+            //the further inside the spine, the more transparent the screw should be
             if (_UseEntryPoint > 0 && IN.localPos.y < _YEntryPoint)
                 o.Alpha = _YAlphaMax - ((_YEntryPoint - IN.localPos.y) / _YDiffMax) * (_YAlphaMax - _YAlphaMin);
 

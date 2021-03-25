@@ -1,15 +1,22 @@
-﻿using System.Collections;
+﻿//Stella
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Debug class to show and adjust spine phantom pose relative to the markers on the device
+/// </summary>
 public class AdjustSpinePos : MonoBehaviour
 {
-    public enum Mode
+    public enum Mode//visualize either the spine phantom or the styrofoam box during adjustment
     { 
         Box,
         Spine
     }
 
+    //represents the spine phantom and styrofoam dummies that are manipulated with the box controls
+    //these values are then transferred to the real phantom
     [System.Serializable]
     public class AdjustObj
     {
@@ -85,9 +92,10 @@ public class AdjustSpinePos : MonoBehaviour
             goThis.transform.position = marker.transform.position;
             goThis.transform.rotation = marker.transform.rotation;
 
-            setRenAndCol(); //No idea why they keep being disabled...
+            setRenAndCol(); //A bug in the box control logic disables these...
         }
 
+        //before moving the fake phantom manually, set it to the correct pose
         public void startAdjust(RegisterSpine.SpineMarker m)
         {
             transStyrofoam.localPosition = m.transStyrofoam.localPosition;
@@ -95,6 +103,7 @@ public class AdjustSpinePos : MonoBehaviour
             transSpine.localPosition = m.transSpine.localPosition;
             transSpine.localEulerAngles = m.transSpine.localEulerAngles;
         }
+        //after the fake phantom has been adjusted, copy its pose into the real phantom
         public void endAdjust(RegisterSpine.SpineMarker m)
         {
             m.transStyrofoam.localPosition = transStyrofoam.localPosition;
@@ -104,6 +113,7 @@ public class AdjustSpinePos : MonoBehaviour
         }
     }
 
+    //The four adjustObjs for the four markers used by the phantom
     [SerializeField]
     private AdjustObj _marker01;
     [SerializeField]
@@ -120,6 +130,7 @@ public class AdjustSpinePos : MonoBehaviour
     private Transform _transMenu;
     [SerializeField] private float _menuOffset;
 
+    //Debug UI that displays currently adjustable marker pose
     [SerializeField]
     private TMPro.TMP_Text _textMode;
     [SerializeField]
@@ -147,7 +158,7 @@ public class AdjustSpinePos : MonoBehaviour
         set01();
     }
 
-    private void Update()
+    private void Update()//update poses and display values
     {
         _marker01.update();
         _marker02.update();
@@ -182,7 +193,7 @@ public class AdjustSpinePos : MonoBehaviour
         _marker04.setMode(mode);
     }
 
-    //
+    // set one of the four markers active
 
     public void set01()
     {

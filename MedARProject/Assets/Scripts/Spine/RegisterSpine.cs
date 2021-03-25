@@ -1,8 +1,15 @@
-﻿using System.Collections;
+﻿//Stella
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
 
+/// <summary>
+/// Logic for spine registration
+/// The spine phantom is tracked via multiple markers
+/// The tracked pose is calculated from all tracked and all valid extended tracked marker poses
+/// </summary>
 public class RegisterSpine : SingletonMonoMortal<RegisterSpine>
 {
     [System.Serializable]
@@ -16,7 +23,7 @@ public class RegisterSpine : SingletonMonoMortal<RegisterSpine>
 
     public List<SpineMarker> liMarker;
 
-    private Transform _lastTracked;
+    private Transform _lastTracked;//cache the last actively tracked marker
     private Transform[] _arTransToUse;
     private int _iTransToUse;
 

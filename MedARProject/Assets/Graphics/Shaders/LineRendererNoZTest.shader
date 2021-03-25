@@ -1,4 +1,7 @@
-﻿Shader "Sprites/LineRendererNoZTest"
+﻿//Stella
+
+//Renders LineRenderer on top of geometry
+Shader "Sprites/LineRendererNoZTest"
 {
     Properties
     {

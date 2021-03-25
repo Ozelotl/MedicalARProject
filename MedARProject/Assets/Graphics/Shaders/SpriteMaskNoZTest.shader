@@ -1,5 +1,7 @@
-﻿// Unity built-in shader source. Copyright (c) 2016 Unity Technologies. MIT license (see license.txt)
+﻿//Stella
 
+//Renders Sprite Masks for sprites rendered on top of geometry
+// Unity built-in shader source. Copyright (c) 2016 Unity Technologies. MIT license (see license.txt)
 Shader "Sprites/MaskNoZTest"
 {
     Properties

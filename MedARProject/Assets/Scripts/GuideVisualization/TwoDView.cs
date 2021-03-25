@@ -1,7 +1,14 @@
-﻿using System.Collections;
+﻿//Stella
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// for each phase, a window with 2D views opens itself
+/// these are rendered by additional cameras
+/// content is activated upon gaze
+/// </summary>
 public class TwoDView : MonoBehaviour, IGazeHandler
 {
     [System.Serializable]
@@ -42,6 +49,7 @@ public class TwoDView : MonoBehaviour, IGazeHandler
         public float Alpha { get { return _matBG.color.a; } }
     }
 
+    #region Settings
     [Header("Settings")]
     [SerializeField]
     private float _alphaMin;
@@ -58,18 +66,21 @@ public class TwoDView : MonoBehaviour, IGazeHandler
     private View _orientation;
     [SerializeField]
     private View _depth;
+    #endregion
 
     private BoxCollider _colThis;
     private Vector3 _colSize;
 
-    private bool unpinned = false;
+    private bool unpinned = false;//has the window been moved manually
     private Vector3 _posLast;
     private Quaternion _rotLast;
 
     private Camera _cam;
 
-    private bool _guideFocused = false;
-    private bool _lookedAt = false;
+    private bool _guideFocused = false;//is any screw guide currently active
+    private bool _lookedAt = false; //is the window gazed at
+
+    //Gaze - fade content in when the view is gazed at 
 
     void OnEnable()
     {
@@ -90,6 +101,8 @@ public class TwoDView : MonoBehaviour, IGazeHandler
     {
         startSetLookAt(false);
     }
+
+    //
 
     void Awake()
     {
@@ -144,14 +157,14 @@ public class TwoDView : MonoBehaviour, IGazeHandler
         if (transform.position != _posLast || transform.rotation != _rotLast)
             unpinned = true;
 
-        if (!unpinned)
+        if (!unpinned) //if the window is still pinned to a screw guide, update its position when the spine moves
             setPinnedTransform();
 
         _posLast = transform.position;
         _rotLast = transform.rotation;
     }
 
-    private void setPinnedTransform()
+    private void setPinnedTransform()//Per default, the 2D view is positioned relative to the current screw guide
     {
         //One must be focused otherwise we are inactive;
         ScrewGuide guide = ScrewGuideCollection.Instance.focusedScrewGuide;
@@ -162,7 +175,7 @@ public class TwoDView : MonoBehaviour, IGazeHandler
         transform.LookAt(transform.position - _cam.transform.forward.normalized, Vector3.up);
     }
 
-    public void changePhase(PhaseManager.Phase phase)
+    public void changePhase(PhaseManager.Phase phase)//change active content based on active phase
     {
         init();
 
@@ -189,6 +202,8 @@ public class TwoDView : MonoBehaviour, IGazeHandler
         _colThis.size = colToUse.size;
         _colSize = colToUse.size;
     }
+
+    // Activate/deactivate based on gaze
 
     //After gazing at the view for x seconds, it will be set to interacting
     private Coroutine coroLookAt;
